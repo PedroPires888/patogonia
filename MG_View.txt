@@ -1,0 +1,814 @@
+-- Transportation Analytics Master Dataset
+-- This view combines all ENH Mercury Gate tables into one comprehensive analytical dataset
+/*
+
+TABLES
+INTEGRATION.PUBLIC.CALENDAR cal_data
+EDP.ENH_MERCURY_GATE.TRANSPORTATION_XXX
+
+This unified view gives you:
+
+Complete shipment lifecycle - from creation to delivery
+All reference numbers - BOL, PRO, PO, SAP BOL, etc.
+Rate Sensitive Flags like Spot Rate Usage and Overflows
+Geographic data - origin/destination with lat/long
+Carrier details - name, SCAC, mode, service level
+Pricing breakdowns - line haul, fuel, accessorials, discouts & deficit
+Calculated KPIs - cost per pound, cost per mile, etc.
+EDI214 updated reasons for Late Pick-Up & Delivery
+Time-based partitioning - for performance and trending
+The view handles all the complex joins and data type conversions, so you can focus on analysis rather than data wrangling!
+
+Last Update of this view - 06/29/2025
+* indicates complete 
+    0. *Add Report Date                                      
+    1. *Link to lanes for easy reporting (Truck Load & STO)
+    2. *Link in to HD Fiscal Calendar
+    3. *Logic to break out direction as IB, LH & STO irrespective of Mode or Ownership 
+    4. *Add in origin plant id/dest plant id (fru number, plant_sk), plant names where relevant
+    5. *Add in Cost Center for the DC loc if possible? And GL account that invoice posted into
+    6. *Add Regional and Divisional assignment
+    7. *Add flag to call out Yard-Pull accessorial charges
+    8. Add Vendor & Vendor Code 
+    9. Find Bad Compliance 
+       i)  Locations
+       ii) Dates
+        
+ */
+CREATE OR REPLACE VIEW DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING.MERCURY_GATE_ANALYTICS AS
+// DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING
+// DM_DECISION_ANALYTICS.TRANSPORTATION
+
+WITH base_transportation AS (
+    SELECT 
+        tmb.MASTER_BOL_ID,
+        tmb.RAW_ID,
+        tmb.CREATED_BY,
+        tmb.CREATED_DATE_TIMESTAMP,
+        tmb.UPDATED_BY,
+        tmb.UPDATED_DATE_TIMESTAMP,
+        tmb.HANDLING_UNITS,
+        tmb.COMMENTS,
+        tmb.POD_RECEIVED,
+        tmb.PROOF_OF_PICKUP,
+        tmb.STATUS as MASTER_BOL_STATUS,
+        tmb.OWNER,
+
+        -- Report Date
+        TO_DATE(tmb.DROP_EARLIEST) AS REPORT_DT,
+                        
+        -- Pickup timing
+        tmb.PICKUP_EARLIEST,        // Pickup Target Window Start
+        tmb.PICKUP_LATEST,          // ''                   End
+        tmb.PICKUP_PLANNED,         // Dont Need This
+                
+        -- Drop timing  
+        tmb.DROP_EARLIEST,
+        tmb.DROP_LATEST,
+        tmb.DROP_PLANNED,
+        
+        tmb.SNOWFLAKE_LAST_UPDATED_TIMESTAMP
+     
+    FROM EDP.ENH_MERCURY_GATE.TRANSPORTATION_MASTER_BOL tmb
+),
+
+shipment_details AS (
+    SELECT 
+        ts.MASTER_BOL_ID,
+        ts.SHIPMENT_ID,
+        ts.TYPE as SHIPMENT_TYPE,
+        ts.STATUS as SHIPMENT_STATUS,    // Not Needed Duplicate of MASTER_BOL_STATUS
+        
+        ts.ASSIGNED_TO,
+        ts.QUOTED_TO,
+        ts.QUOTED_DATE,
+        ts.QUOTED_BY,
+        
+        -- Weight information
+        CAST(ts.ACTUAL_WEIGHT AS FLOAT) as ACTUAL_WEIGHT,
+        CAST(ts.PLANNED_WEIGHT AS FLOAT) as PLANNED_WEIGHT,
+        CAST(ts.ORDERED_WEIGHT AS FLOAT) as ORDERED_WEIGHT,
+        CAST(ts.DELIVERED_WEIGHT AS FLOAT) as DELIVERED_WEIGHT,
+
+        -- Shipment timing
+        ts.PICKUP_EARLIEST as SHIPMENT_PICKUP_EARLIEST,
+        ts.PICKUP_LATEST as SHIPMENT_PICKUP_LATEST,
+        ts.DROP_EARLIEST as SHIPMENT_DROP_EARLIEST,
+        ts.DROP_LATEST as SHIPMENT_DROP_LATEST
+        
+    FROM EDP.ENH_MERCURY_GATE.TRANSPORTATION_SHIPMENT ts
+),
+
+carrier_info AS (
+    SELECT 
+        tc.MASTER_BOL_ID,
+        tc.CARRIER_ID,
+        tc.CARRIER_NAME,
+        tc.SCAC,
+        tc.MODE,
+        tc.SERVICE,
+        CAST(tc.SERVICE_DAYS AS INT) as SERVICE_DAYS,
+        CAST(tc.DISTANCE AS FLOAT) as DISTANCE_MILES,
+        tc.MC_NUMBER,
+        tc.US_DOT
+    FROM EDP.ENH_MERCURY_GATE.TRANSPORTATION_CARRIER tc
+    WHERE tc.CARRIER_TYPE = 'Responsible'  -- Primary carrier only
+),
+
+-- Origin address
+origin_address AS (
+    SELECT 
+        ta.MASTER_BOL_ID,
+        ta.LOCATION_CODE as ORIGIN_LOCATION_CODE,
+        ta.NAME as ORIGIN_NAME,
+        ta.ADDRESS_LINE_1 as ORIGIN_ADDRESS_1,
+        ta.ADDRESS_LINE_2 as ORIGIN_ADDRESS_2,
+        ta.CITY as ORIGIN_CITY,
+        ta.STATE_PROVINCE as ORIGIN_STATE,
+        ta.POSTAL_CODE as ORIGIN_ZIP,
+        ta.COUNTRY_CODE as ORIGIN_COUNTRY,
+        CASE 
+            WHEN ta.LAT_DIRECTION = 'S' THEN -(CAST(ta.LAT_DEGREES AS FLOAT) / 1000000)
+            ELSE CAST(ta.LAT_DEGREES AS FLOAT) / 1000000
+        END as ORIGIN_LATITUDE,
+        CASE 
+            WHEN ta.LONG_DIRECTION = 'W' THEN -(CAST(ta.LONG_DEGREES AS FLOAT) / 1000000)
+            ELSE CAST(ta.LONG_DEGREES AS FLOAT) / 1000000
+        END as ORIGIN_LONGITUDE,
+        ta.addr_type as O_ADDR_TYPE
+    FROM EDP.ENH_MERCURY_GATE.TRANSPORTATION_ADDRESS ta
+    WHERE ta.SHIPMENT_ADDR_TYPE = 'shipper'
+),
+
+-- Destination address  
+destination_address AS (
+    SELECT 
+        ta.MASTER_BOL_ID,
+        ta.LOCATION_CODE as DEST_LOCATION_CODE,
+        ta.NAME as DEST_NAME,
+        ta.ADDRESS_LINE_1 as DEST_ADDRESS_1,
+        ta.ADDRESS_LINE_2 as DEST_ADDRESS_2,
+        ta.CITY as DEST_CITY,
+        ta.STATE_PROVINCE as DEST_STATE,
+        ta.POSTAL_CODE as DEST_ZIP,
+        ta.COUNTRY_CODE as DEST_COUNTRY,
+        CASE 
+            WHEN ta.LAT_DIRECTION = 'S' THEN -(CAST(ta.LAT_DEGREES AS FLOAT) / 1000000)
+            ELSE CAST(ta.LAT_DEGREES AS FLOAT) / 1000000
+        END as DEST_LATITUDE,
+        CASE 
+            WHEN ta.LONG_DIRECTION = 'W' THEN -(CAST(ta.LONG_DEGREES AS FLOAT) / 1000000)
+            ELSE CAST(ta.LONG_DEGREES AS FLOAT) / 1000000
+        END as DEST_LONGITUDE,
+        ta.ADDR_TYPE as D_ADDR_TYPE
+    FROM EDP.ENH_MERCURY_GATE.TRANSPORTATION_ADDRESS ta
+    WHERE ta.SHIPMENT_ADDR_TYPE = 'consignee'
+),
+
+-- Package dimensions and weights
+package_summary AS (
+    SELECT 
+        tp.MASTER_BOL_ID,
+        COUNT(*) as PACKAGE_COUNT,
+        SUM(CAST(tp.ACTUAL_WEIGHT AS FLOAT)) as TOTAL_PACKAGE_WEIGHT,
+        SUM(CAST(tp.PLANNED_WEIGHT AS FLOAT)) as TOTAL_PLANNED_WEIGHT,
+        AVG(CAST(tp.WIDTH AS FLOAT)) as AVG_WIDTH,
+        AVG(CAST(tp.LENGTH AS FLOAT)) as AVG_LENGTH,
+        AVG(CAST(tp.HEIGHT AS FLOAT)) as AVG_HEIGHT,
+        SUM(CAST(tp.WIDTH AS FLOAT) * CAST(tp.LENGTH AS FLOAT) * CAST(tp.HEIGHT AS FLOAT)) as TOTAL_CUBIC_INCHES
+    FROM EDP.ENH_MERCURY_GATE.TRANSPORTATION_PACKAGE tp
+    WHERE tp.ACTUAL_WEIGHT IS NOT NULL AND tp.ACTUAL_WEIGHT != '0'
+    GROUP BY tp.MASTER_BOL_ID
+),
+
+-- Shipment Tracking
+shipment_tracking AS(
+    SELECT
+        ssd.MASTER_BOL_ID,
+        MAX(CASE WHEN ssd.DETAIL_CODE = 'AA' THEN ssd.ACTUAL_DATE END) AS PICKUP_APPT,
+        MAX(CASE WHEN ssd.DETAIL_CODE = 'AF' THEN ssd.ACTUAL_DATE END) AS ACTUAL_SHIPPED,
+        MAX(CASE WHEN ssd.DETAIL_CODE = 'AB' THEN ssd.ACTUAL_DATE END) AS DELIVERY_APPT,
+        MIN(CASE WHEN ssd.DETAIL_CODE = 'X1' THEN ssd.ACTUAL_DATE END) AS DROP_ARRIVED,
+        MIN(CASE WHEN ssd.DETAIL_CODE = 'X3' THEN ssd.ACTUAL_DATE END) AS PICKUP_ARRIVED,
+        MIN(CASE WHEN ssd.DETAIL_CODE = 'CD' THEN ssd.ACTUAL_DATE END) AS DELIVERY_COMPLETE,
+        CASE
+            WHEN
+                MIN(CASE WHEN ssd.DETAIL_CODE = 'X1' THEN ssd.ACTUAL_DATE END) IS NOT NULL
+            OR
+                MIN(CASE WHEN ssd.DETAIL_CODE = 'CD' THEN ssd.ACTUAL_DATE END) IS NOT NULL
+            THEN
+                LEAST(
+                    COALESCE(MIN(CASE WHEN ssd.DETAIL_CODE = 'X1' THEN ssd.ACTUAL_DATE END), '2099-01-01'),
+                    COALESCE(MIN(CASE WHEN ssd.DETAIL_CODE = 'CD' THEN ssd.ACTUAL_DATE END), '2099-01-01')
+                    )
+            ELSE NULL
+            END AS ACTUAL_DELIVERY
+    FROM
+        EDP.ENH_MERCURY_GATE.TRANSPORTATION_SHIPMENT_STATUS_DETAIL AS ssd
+        JOIN EDP.ENH_MERCURY_GATE.TRANSPORTATION_MASTER_BOL AS tmb
+        ON ssd.MASTER_BOL_ID=tmb.MASTER_BOL_ID
+    WHERE ssd.DETAIL_CODE <> 'X6' //ssd.MASTER_BOL_ID ='329930823078'
+    GROUP BY
+        ssd.MASTER_BOL_ID
+),
+
+-- Split the reason codes Into Pickup & Delivery
+-- Pickup Late Reasons
+plate_reason AS(
+    SELECT
+        lrt.MASTER_BOL_ID,
+        COALESCE(
+            CASE 
+            WHEN lrt.DETAIL_CODE = 'AF' THEN lrt.STATUS_REASON_CODE 
+            END, NULL ) AS P_LATE_REASON,
+    FROM
+        EDP.ENH_MERCURY_GATE.TRANSPORTATION_SHIPMENT_STATUS_DETAIL lrt
+    WHERE
+        lrt.DETAIL_CODE = 'AF' //AND lrt.MASTER_BOL_ID='329871521789'
+    GROUP BY
+        lrt.MASTER_BOL_ID,
+        P_LATE_REASON
+    ),
+    
+-- Delivery Late Reasons
+// 329871521789
+dlate_reason AS(
+    SELECT
+        lrs.MASTER_BOL_ID,
+        COALESCE(
+            CASE 
+            WHEN lrs.DETAIL_CODE = 'X1' THEN lrs.STATUS_REASON_CODE 
+            END, NULL) AS D_LATE_REASON,
+    FROM
+        EDP.ENH_MERCURY_GATE.TRANSPORTATION_SHIPMENT_STATUS_DETAIL lrs
+    WHERE
+        lrs.DETAIL_CODE = 'X1' //AND lrs.MASTER_BOL_ID='329871521789'
+    GROUP BY
+        lrs.MASTER_BOL_ID,
+        D_LATE_REASON
+    ),
+
+-- Pricing summary
+pricing_summary AS (
+    SELECT 
+        tps.MASTER_BOL_ID,
+        tps.QUEUE,
+        tps.REASON_CODE as SETTLEMENT_REASON,
+        tps.INVOICE_NUMBER,
+        tps.INVOICE_DATE,
+        MAX(tps.EXTRACT_DATE) as EXTRACT_DATE,
+        CAST(tps.INVOICE_WEIGHT AS FLOAT) as INVOICE_WEIGHT,
+        CAST(tps.TOTAL_AMOUNT AS FLOAT) as TOTAL_INVOICE_AMOUNT,
+        CAST(tps.SETTLEMENT_TOTAL AS FLOAT) as SETTLEMENT_AMOUNT,
+                
+        -- Charge breakdowns
+        SUM(CASE WHEN tps.CHARGE_TYPE = 'LINE_HAUL' OR tps.CHARGE_TYPE = 'ITEM'  
+            OR tps.charge_description ILIKE '%LINEHAUL%' OR tps.charge_description ILIKE '%FAK%' THEN 
+                CAST(tps.CHARGE_AMOUNT AS FLOAT) ELSE 0 END) as LINE_HAUL_CHARGES,
+        SUM(CASE WHEN tps.CHARGE_TYPE LIKE '%FUEL%' 
+            OR tps.charge_description ILIKE '%Fuel%'THEN CAST(tps.CHARGE_AMOUNT AS FLOAT) ELSE 0 END) as FUEL_CHARGES,
+        SUM(CASE WHEN tps.CHARGE_TYPE = 'ACCESSORIAL' THEN CAST(tps.CHARGE_AMOUNT AS FLOAT) ELSE 0 END) as ACCESSORIAL_CHARGES,
+        SUM(CASE WHEN tps.CHARGE_TYPE LIKE 'DISCOUNT' THEN CAST(tps.CHARGE_AMOUNT AS FLOAT) ELSE 0 END) as DISCOUNT,
+        SUM(CASE WHEN tps.CHARGE_TYPE LIKE 'DEFICIT' THEN CAST(tps.CHARGE_AMOUNT AS FLOAT) ELSE 0 END) as DEFICIT,
+        MAX(CASE WHEN tps.CHARGE_DESCRIPTION ILIKE '%Yard%' THEN TRUE ELSE NULL END) as YardPull_Charge,
+        
+        -- Most recent invoice info per BOL
+        ROW_NUMBER() OVER (PARTITION BY tps.MASTER_BOL_ID ORDER BY tps.INVOICE_DATE DESC) as rn
+
+    FROM EDP.ENH_MERCURY_GATE.TRANSPORTATION_PRICESHEET tps
+    WHERE tps.TOTAL_AMOUNT IS NOT NULL
+    GROUP BY tps.MASTER_BOL_ID, tps.QUEUE, tps.REASON_CODE, tps.INVOICE_NUMBER, tps.INVOICE_DATE, tps.INVOICE_WEIGHT, tps.TOTAL_AMOUNT, tps.SETTLEMENT_TOTAL
+),
+
+-- Reference numbers (flattened key references)
+reference_numbers AS (
+    SELECT 
+        tmbrn.MASTER_BOL_ID,
+        MAX(CASE WHEN tmbrn.REFERENCE_TYPE = 'BOL' THEN tmbrn.REFERENCE_INFO END) as BOL_NUMBER,
+        MAX(CASE WHEN tmbrn.REFERENCE_TYPE = 'PRO' THEN tmbrn.REFERENCE_INFO END) as PRO_NUMBER,
+        
+        LISTAGG(CASE WHEN tmbrn.REFERENCE_TYPE = 'PO Number' THEN REGEXP_REPLACE(tmbrn.REFERENCE_INFO, '[ /|,]+', ',') END, ', ') as PO_NUMBER,
+        
+        MAX(CASE WHEN tmbrn.REFERENCE_TYPE = 'SAP BOL' THEN tmbrn.REFERENCE_INFO END) as SAP_BOL_NUMBER,
+        MAX(CASE WHEN tmbrn.REFERENCE_TYPE = 'Shipment Number' THEN tmbrn.REFERENCE_INFO END) as SHIPMENT_NUMBER,
+        MAX(CASE WHEN tmbrn.REFERENCE_TYPE = 'Order Number' THEN tmbrn.REFERENCE_INFO END) as ORDER_NUMBER,
+        MAX(CASE WHEN tmbrn.REFERENCE_TYPE = 'Load Number' THEN tmbrn.REFERENCE_INFO END) as LOAD_NUMBER,
+        MAX(CASE WHEN tmbrn.REFERENCE_TYPE = 'Spot Quote Carrier' THEN tmbrn.REFERENCE_INFO END) as SPOT_USED,
+        MAX(CASE WHEN tmbrn.REFERENCE_TYPE = 'PO Number' AND tmbrn.REFERENCE_INFO ILIKE '%Overflow%' 
+                THEN 'true' 
+                ELSE NULL END) AS OVERFLOW
+    FROM EDP.ENH_MERCURY_GATE.TRANSPORTATION_MASTER_BOL_REFERENCE_NUMBER tmbrn
+    GROUP BY tmbrn.MASTER_BOL_ID
+),
+
+-- Activity summary (latest status per BOL)
+latest_activity AS (
+    SELECT 
+        ta.MASTER_BOL_ID,
+        ta.TYPE as LATEST_ACTIVITY_TYPE,
+        ta.STATUS as LATEST_ACTIVITY_STATUS,
+        ta.CREATE_DATE as LATEST_ACTIVITY_DATE,
+        ta.ACTIVITY_INFO,
+        ROW_NUMBER() OVER (PARTITION BY ta.MASTER_BOL_ID ORDER BY ta.CREATE_DATE DESC) as rn
+    FROM EDP.ENH_MERCURY_GATE.TRANSPORTATION_ACTIVITY ta
+),
+
+-- HDS Calendar Fiscal References
+hds_cal AS (
+    SELECT 
+        tmb.MASTER_BOL_ID,
+        //TO_DATE(tmb.DROP_EARLIEST) AS REPORT_DT,
+        cal.FISCAL_YR_ID AS FS_YR, 
+        cal.FISCAL_QUARTER AS FS_QT, 
+        cal.FISCAL_PERIOD AS FS_PR, 
+        cal.FISCAL_WEEK AS FS_WK
+    FROM EDP.ENH_MERCURY_GATE.TRANSPORTATION_MASTER_BOL tmb
+    LEFT JOIN INTEGRATION.PUBLIC.CALENDAR cal
+        ON TO_DATE(tmb.DROP_EARLIEST)= cal.DATE_DATE
+),
+
+-- Shipment Direction (LH, STO, IB)
+ivnt_direction AS (
+    SELECT 
+        np.MASTER_BOL_ID,
+        MAX(CASE 
+            WHEN np.REFERENCE_TYPE = 'BOL' AND np.REFERENCE_INFO LIKE '%LH%' THEN 'LH'
+            WHEN np.REFERENCE_TYPE = 'BOL' AND np.REFERENCE_INFO LIKE '%IB%' THEN 'IB'
+            WHEN np.REFERENCE_TYPE = 'BOL' AND np.REFERENCE_INFO LIKE '%STO%' THEN 'STO'
+            ELSE NULL
+        END )AS iDir
+    FROM EDP.ENH_MERCURY_GATE.TRANSPORTATION_MASTER_BOL_REFERENCE_NUMBER np
+    WHERE np.REFERENCE_TYPE = 'BOL'
+    GROUP BY np.MASTER_BOL_ID
+),
+
+-- Deal with PO numbers
+po_num_flat as (
+    SELECT
+    A.MASTER_BOL_ID,
+    MAX(FLT.value::string) AS PO_NUMBER
+    FROM EDP.ENH_MERCURY_GATE.TRANSPORTATION_SHIPMENT_REFERENCE_NUMBER A,
+       LATERAL FLATTEN(
+         input => SPLIT(
+           REGEXP_REPLACE(A.REFERENCE_INFO, '[ /|,]+', ','),',')) FLT
+    WHERE A.REFERENCE_TYPE = 'PO Number' // AND MASTER_BOL_ID='329792663564'
+        AND REGEXP_REPLACE(A.REFERENCE_INFO, '[ /|,]+', ',') IS NOT NULL
+        AND TRIM(REGEXP_REPLACE(A.REFERENCE_INFO, '[ /|,]+', ',')) != ''
+    GROUP BY A.MASTER_BOL_ID
+),
+
+-- Lane for Truckload & STO interfacility
+-- Origin Plant
+o_plant as (
+    SELECT 
+        ta.MASTER_BOL_ID,
+        ta.NAME,
+        COALESCE(da.c2 , 'No DC') as O_DC_NAME,
+        COALESCE(da.c3, 'No Mrkt') as O_Market,
+        COALESCE(da.c2_plant_id, '-') as O_PLANT_ID,
+        COALESCE(da.C2_ORG, '-') as O_BUS_ORG,
+        COALESCE(da.xd_flag,'-') as O_XD_BLD,
+        ta.POSTAL_CODE
+    FROM EDP.ENH_MERCURY_GATE.TRANSPORTATION_ADDRESS ta
+    LEFT JOIN EDP.ENH_MERCURY_GATE.TRANSPORTATION_CARRIER tc
+        ON ta.MASTER_BOL_ID = tc.MASTER_BOL_ID
+    LEFT JOIN DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING.DC_DIM_AL da
+        ON ta.NAME = da.c1
+    WHERE ta.SHIPMENT_ADDR_TYPE = 'shipper' AND tc.mode = 'Truckload'
+    //AND ta.addr_type = 'MRO'
+    GROUP BY ta.MASTER_BOL_ID,  ta.NAME, O_DC_NAME, O_Market, O_PLANT_ID, O_BUS_ORG, O_XD_BLD, ta.POSTAL_CODE
+),   
+
+-- Origin Plant
+d_plant as (
+    SELECT 
+        ta.MASTER_BOL_ID,
+        ta.NAME,
+        COALESCE(da.c2 , 'No DC') as D_DC_NAME,
+        COALESCE(da.c3, 'No Mrkt') as D_Market,
+        COALESCE(da.c2_plant_id, '-') as D_PLANT_ID,
+        COALESCE(da.C2_ORG, '-') as D_BUS_ORG,
+        COALESCE(da.xd_flag,'-') as D_XD_BLD,
+        ta.POSTAL_CODE
+    FROM EDP.ENH_MERCURY_GATE.TRANSPORTATION_ADDRESS ta
+    LEFT JOIN EDP.ENH_MERCURY_GATE.TRANSPORTATION_CARRIER tc
+        ON ta.MASTER_BOL_ID = tc.MASTER_BOL_ID
+    LEFT JOIN DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING.DC_DIM_AL da
+        ON ta.NAME = da.c1
+    WHERE ta.SHIPMENT_ADDR_TYPE = 'consignee' AND tc.mode = 'Truckload'
+    //AND ta.addr_type = 'MRO'
+    GROUP BY ta.MASTER_BOL_ID,  ta.NAME, D_DC_NAME, D_Market, D_PLANT_ID, D_BUS_ORG, D_XD_BLD, ta.POSTAL_CODE
+), 
+
+-- Region & Divisional Reporting
+reg_div as (
+    SELECT 
+        //TOP 100
+        ta.MASTER_BOL_ID,
+        //ta.state_province,
+        COALESCE(rd.REGION , 'No Region') as REGION,
+        COALESCE(rd.RP_REGION , 'No Region') as RP_REGION,
+        COALESCE(rd.RP_DIV, 'No Division') as RP_DIV
+    FROM EDP.ENH_MERCURY_GATE.TRANSPORTATION_ADDRESS ta
+    LEFT JOIN DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING.REGION rd
+        ON ta.state_province = rd.ORIGIN_ST
+    WHERE ta.SHIPMENT_ADDR_TYPE = 'consignee' //AND tc.mode = 'Truckload'
+    GROUP BY ta.MASTER_BOL_ID,  ta.state_province, REGION, RP_REGION, RP_DIV
+), 
+
+-- Cost Center & Reporting DC
+cc_codes as (
+    SELECT
+    ta.master_bol_id,
+    c.dc_report as Reporting_DC,
+    c.cc_report as Reporting_CC
+FROM EDP.ENH_MERCURY_GATE.TRANSPORTATION_ADDRESS ta
+    JOIN DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING.CC_CODES c
+    ON ta.location_code = c.LOC_CODE
+WHERE ta.location_code is not null AND ta.SHIPMENT_ADDR_TYPE = 'consignee'
+GROUP BY ALL
+),
+
+
+-- Lane for Vendors
+
+-- GL Account for invoiced and completed
+gl_acc as (
+    SELECT 
+        tps.MASTER_BOL_ID,
+        MAX(COALESCE(fp.INVOICE_GL , null)) as GL_ACC
+    FROM EDP.ENH_MERCURY_GATE.TRANSPORTATION_PRICESHEET tps
+    LEFT JOIN DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING.VW_DISTINCT_FPA_INVOICES fp
+        ON tps.INVOICE_NUMBER = fp.INVOICE_NUMBER
+    WHERE tps.INVOICE_NUMBER IS NOT NULL
+    GROUP BY tps.MASTER_BOL_ID 
+)  
+
+
+
+
+-- Final combined dataset
+SELECT 
+    -- Primary identifiers
+    bt.MASTER_BOL_ID,
+    //bt.RAW_ID,                    // removed as found nothing required it at this stage
+    sd.SHIPMENT_ID,
+    
+    -- Reference numbers & transportation tags
+    rn.BOL_NUMBER,
+    rn.PRO_NUMBER,
+    rn.PO_NUMBER,
+    //pof.PO_NUMBER,
+    rn.SAP_BOL_NUMBER,
+    rn.SHIPMENT_NUMBER,
+    rn.ORDER_NUMBER,
+    rn.LOAD_NUMBER,
+    rn.SPOT_USED,
+    rn.OVERFLOW,
+    ivt.iDir AS Direction, 
+    
+    -- Timing information
+    TRY_TO_TIMESTAMP(bt.CREATED_DATE_TIMESTAMP) as SHIPMENT_CREATED_DATE,
+    TRY_TO_TIMESTAMP(bt.PICKUP_EARLIEST) as PICKUP_EARLIEST,
+    TRY_TO_TIMESTAMP(bt.PICKUP_LATEST) as PICKUP_LATEST,
+    //TRY_TO_TIMESTAMP(bt.PICKUP_PLANNED) as PICKUP_PLANNED,
+    TRY_TO_TIMESTAMP(bt.DROP_EARLIEST) as DROP_EARLIEST,
+    TRY_TO_TIMESTAMP(bt.DROP_LATEST) as DROP_LATEST,
+    //TRY_TO_TIMESTAMP(bt.DROP_PLANNED) as DROP_PLANNED,
+    
+    -- Origin information
+    oa.ORIGIN_LOCATION_CODE,
+    o_p.O_PLANT_ID,
+    o_p.O_XD_BLD,
+    o_p.O_BUS_ORG,
+    oa.ORIGIN_NAME,
+    oa.ORIGIN_ADDRESS_1,
+    oa.ORIGIN_CITY,
+    oa.ORIGIN_STATE,
+    oa.ORIGIN_ZIP,
+    oa.ORIGIN_COUNTRY,
+    oa.ORIGIN_LATITUDE,
+    oa.ORIGIN_LONGITUDE,
+    oa.O_ADDR_TYPE,
+    
+    -- Destination information
+    da.DEST_LOCATION_CODE,
+    d_p.D_PLANT_ID,
+    d_p.D_XD_BLD,
+    d_p.D_BUS_ORG,
+    da.DEST_NAME,
+    da.DEST_ADDRESS_1,
+    da.DEST_CITY,
+    da.DEST_STATE,
+    da.DEST_ZIP,
+    da.DEST_COUNTRY,
+    da.DEST_LATITUDE,
+    da.DEST_LONGITUDE,
+    da.D_ADDR_TYPE,
+    
+    -- Lane information
+    CONCAT(oa.ORIGIN_STATE, '-', da.DEST_STATE) as LANE_STATE_TO_STATE,
+    CONCAT(oa.ORIGIN_CITY, ', ', oa.ORIGIN_STATE, ' to ', da.DEST_CITY, ', ', da.DEST_STATE) as LANE_DESCRIPTION,
+    rgd.RP_REGION,
+    rgd.RP_DIV,
+    
+    -- Carrier information
+    ci.CARRIER_NAME,
+    ci.SCAC,
+    ci.MODE,
+    ci.SERVICE,
+    ci.SERVICE_DAYS,
+    ci.DISTANCE_MILES,
+    ci.MC_NUMBER,
+    ci.US_DOT,
+    
+    -- Status information
+    bt.MASTER_BOL_STATUS,
+    // sd.SHIPMENT_STATUS,             // Removed as it is duplicate
+    sd.SHIPMENT_TYPE,
+    la.LATEST_ACTIVITY_TYPE,
+    la.LATEST_ACTIVITY_STATUS,
+    bt.REPORT_DT,
+    // TRY_TO_TIMESTAMP(la.LATEST_ACTIVITY_DATE) as LATEST_ACTIVITY_DATE,   // Removed as it has no value at this stage
+    
+    -- Weight and package information
+    sd.ACTUAL_WEIGHT,
+    sd.PLANNED_WEIGHT,
+    sd.ORDERED_WEIGHT,
+    sd.DELIVERED_WEIGHT,
+    ps_pkg.PACKAGE_COUNT,
+    ps_pkg.TOTAL_PACKAGE_WEIGHT,
+    ps_pkg.TOTAL_CUBIC_INCHES,
+    bt.HANDLING_UNITS,
+    
+    -- Pricing information (most recent invoice)
+    ps_price.QUEUE,
+    ps_price.INVOICE_NUMBER,
+    TRY_TO_DATE(ps_price.INVOICE_DATE) as INVOICE_DATE,
+    ps_price.INVOICE_WEIGHT,
+    ps_price.TOTAL_INVOICE_AMOUNT,
+    ps_price.SETTLEMENT_AMOUNT,
+    ps_price.LINE_HAUL_CHARGES,
+    ps_price.FUEL_CHARGES,
+    ps_price.ACCESSORIAL_CHARGES,
+    ps_price.DISCOUNT,
+    ps_price.DEFICIT,
+    ps_price.YardPull_Charge,
+    TRY_TO_DATE(ps_price.EXTRACT_DATE) as EXTRACT_DATE,
+    gl_a.GL_ACC,
+        
+    -- Calculated metrics
+    -- Cost per lbs
+    // CASE 
+    //     WHEN sd.ACTUAL_WEIGHT > 0 AND ps_price.TOTAL_INVOICE_AMOUNT > 0 
+    //     THEN ps_price.TOTAL_INVOICE_AMOUNT / sd.ACTUAL_WEIGHT 
+    //     ELSE NULL 
+    // END as COST_PER_POUND,
+
+    -- Cost per mile
+    CASE 
+        WHEN ci.DISTANCE_MILES > 0 AND ps_price.TOTAL_INVOICE_AMOUNT > 0 
+        THEN ps_price.TOTAL_INVOICE_AMOUNT / ci.DISTANCE_MILES 
+        ELSE NULL 
+    END as COST_PER_MILE,
+    
+    // CASE 
+    //     WHEN ci.DISTANCE_MILES > 0 AND sd.ACTUAL_WEIGHT > 0 
+    //     THEN sd.ACTUAL_WEIGHT / ci.DISTANCE_MILES 
+    //     ELSE NULL 
+    // END as POUNDS_PER_MILE,
+    
+    -- Business information
+    bt.OWNER,
+    bt.CREATED_BY,
+    bt.COMMENTS,
+    bt.POD_RECEIVED,
+    bt.PROOF_OF_PICKUP,
+    
+    -- Date partitions for performance (REPLACE WITH HDS CAL PERIODS)
+    //DATE_TRUNC('MONTH', TRY_TO_DATE(bt.CREATED_DATE_TIMESTAMP)) as CREATED_MONTH,
+    //DATE_TRUNC('WEEK', TRY_TO_DATE(bt.CREATED_DATE_TIMESTAMP)) as CREATED_WEEK,
+    //YEAR(TRY_TO_DATE(bt.CREATED_DATE_TIMESTAMP)) as CREATED_YEAR,
+
+    -- Tracking
+    CASE WHEN ACTUAL_SHIPPED IS NULL OR ACTUAL_DELIVERY IS NULL THEN NULL
+    ELSE ROUND(DATEDIFF('second', ACTUAL_SHIPPED, ACTUAL_DELIVERY) / 3600.0, 1)
+    END AS TRANSIT_HRS,
+    ssd.PICKUP_APPT,
+    ssd.ACTUAL_SHIPPED,
+    ssd.DELIVERY_APPT,
+    ssd.DROP_ARRIVED,
+    ssd.DELIVERY_COMPLETE,
+    ssd.ACTUAL_DELIVERY,
+
+    -- Financial Cost Centre & Reporting DC
+    cde.REPORTING_CC,
+    cde.REPORTING_DC,
+    -- Late Reason
+    ltr.P_LATE_REASON,
+    lts.D_LATE_REASON,
+
+    -- Reporting HDS Calendar
+    cld.FS_YR, 
+    //cld.FS_QT, 
+    cld.FS_PR, 
+    cld.FS_WK,
+    
+    -- Data freshness
+    bt.SNOWFLAKE_LAST_UPDATED_TIMESTAMP
+    
+FROM base_transportation bt
+
+LEFT JOIN shipment_details sd 
+    ON bt.MASTER_BOL_ID = sd.MASTER_BOL_ID
+    
+LEFT JOIN carrier_info ci 
+    ON bt.MASTER_BOL_ID = ci.MASTER_BOL_ID
+    
+LEFT JOIN origin_address oa 
+    ON bt.MASTER_BOL_ID = oa.MASTER_BOL_ID
+    
+LEFT JOIN destination_address da 
+    ON bt.MASTER_BOL_ID = da.MASTER_BOL_ID
+    
+LEFT JOIN package_summary ps_pkg 
+    ON bt.MASTER_BOL_ID = ps_pkg.MASTER_BOL_ID
+    
+LEFT JOIN pricing_summary ps_price 
+    ON bt.MASTER_BOL_ID = ps_price.MASTER_BOL_ID 
+    AND ps_price.rn = 1  -- Most recent invoice only
+    
+LEFT JOIN reference_numbers rn 
+    ON bt.MASTER_BOL_ID = rn.MASTER_BOL_ID
+    
+LEFT JOIN latest_activity la 
+    ON bt.MASTER_BOL_ID = la.MASTER_BOL_ID 
+    AND la.rn = 1  -- Most recent activity only
+
+LEFT JOIN shipment_tracking ssd
+    ON bt.MASTER_BOL_ID = ssd.MASTER_BOL_ID 
+
+LEFT JOIN plate_reason ltr
+    ON bt.MASTER_BOL_ID = ltr.MASTER_BOL_ID
+
+LEFT JOIN dlate_reason lts
+    ON bt.MASTER_BOL_ID = lts.MASTER_BOL_ID
+
+LEFT JOIN hds_cal as cld
+    ON bt.MASTER_BOL_ID = cld.MASTER_BOL_ID
+
+LEFT JOIN ivnt_direction as ivt
+    ON bt.MASTER_BOL_ID = ivt.MASTER_BOL_ID
+
+LEFT JOIN po_num_flat as pof
+        ON bt.MASTER_BOL_ID = pof.MASTER_BOL_ID
+
+LEFT JOIN o_plant as o_p
+        ON bt.MASTER_BOL_ID = o_p.MASTER_BOL_ID
+
+LEFT JOIN d_plant as d_p
+        ON bt.MASTER_BOL_ID = d_p.MASTER_BOL_ID
+
+LEFT JOIN gl_acc as gl_a
+        ON bt.MASTER_BOL_ID = gl_a.MASTER_BOL_ID
+
+LEFT JOIN reg_div as rgd
+        ON bt.MASTER_BOL_ID = rgd.MASTER_BOL_ID
+
+LEFT JOIN cc_codes as cde
+        ON bt.MASTER_BOL_ID = cde.MASTER_BOL_ID
+         
+-- Filter for valid shipments with basic required data
+WHERE bt.MASTER_BOL_ID IS NOT NULL
+AND (oa.ORIGIN_STATE IS NOT NULL OR da.DEST_STATE IS NOT NULL)
+
+ORDER BY bt.CREATED_DATE_TIMESTAMP DESC;
+
+
+
+-- Top lanes by volume
+SELECT 
+    LANE_STATE_TO_STATE,
+    MODE,
+    COUNT(*) as SHIPMENT_COUNT,
+    SUM(ACTUAL_WEIGHT) as TOTAL_WEIGHT,
+    AVG(TOTAL_INVOICE_AMOUNT) as AVG_COST,
+    AVG(DISTANCE_MILES) as AVG_DISTANCE
+FROM DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING.MERCURY_GATE_ANALYTICS
+WHERE FS_YR = 2025
+GROUP BY LANE_STATE_TO_STATE, MODE
+ORDER BY SHIPMENT_COUNT DESC
+LIMIT 20;
+
+-- Carrier performance analysis
+SELECT 
+    CARRIER_NAME,
+    SCAC,
+    COUNT(*) as SHIPMENTS,
+    AVG(COST_PER_POUND) as AVG_COST_PER_LB,
+    AVG(SERVICE_DAYS) as AVG_SERVICE_DAYS,
+    SUM(TOTAL_INVOICE_AMOUNT) as TOTAL_SPEND
+FROM DM_DECISION_ANALYTICS.TRANSPORTATION.MERCURY_GATE_ANALYTICS
+WHERE CREATED_YEAR = 2025
+AND TOTAL_INVOICE_AMOUNT > 0
+GROUP BY CARRIER_NAME, SCAC
+ORDER BY TOTAL_SPEND DESC;
+
+-- Monthly spend trends
+SELECT 
+    CREATED_MONTH,
+    COUNT(*) as SHIPMENTS,
+    SUM(TOTAL_INVOICE_AMOUNT) as TOTAL_SPEND,
+    AVG(TOTAL_INVOICE_AMOUNT) as AVG_COST_PER_SHIPMENT,
+    SUM(ACTUAL_WEIGHT) as TOTAL_WEIGHT
+FROM DM_DECISION_ANALYTICS.TRANSPORTATION.MERCURY_GATE_ANALYTICS
+WHERE CREATED_YEAR = 2025
+GROUP BY CREATED_MONTH
+ORDER BY CREATED_MONTH;
+
+SELECT TOP 100 *
+FROM DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING.MERCURY_GATE_ANALYTICS
+WHERE REGEXP_LIKE(
+    BOL_NUMBER,
+    'LH19940527|IB19922791|IB19616361|LH17370569|IB18760969|STO19862551|LH19094162|IB18913172');
+
+SELECT TOP 200 CONCAT(O_PLANT_ID,'-',D_PLANT_ID) AS DC_TO_DC, * 
+    // CONCAT(O_ADDR_TYPE,'-', D_ADDR_TYPE) as Lane_type, MODE, Count(DISTINCT MASTER_BOL_ID), MASTER_BOL_STATUS, OWNER
+FROM DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING.MERCURY_GATE_ANALYTICS
+WHERE CONCAT(O_PLANT_ID,'-',D_PLANT_ID) ILIKE 'CO11-%' AND FS_YR = 2025;
+WHERE ORIGIN_LOCATION_CODE ilike '%FULLER%' ; //OR ORIGIN_NAME ilike '%SUPERIOR SOLUTIONS%' OR ORIGIN_ZIP ilike '%675%'
+//WHERE OWNER IS NOT NULL AND ORIGIN_NAME ilike '%Fuller%' //and MASTER_BOL_STATUS='Delivered'
+//GROUP BY CONCAT(O_ADDR_TYPE,'-', D_ADDR_TYPE), MODE, MASTER_BOL_STATUS, OWNER ;
+
+SELECT TO_VARCHAR(TO_DATE(ACTUAL_SHIPPED), 'YYYY/MM') AS month_year,
+  DA.ORIGIN_NAME,  COUNT(*) AS SHIPMENTS
+FROM DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING.MERCURY_GATE_ANALYTICS DA
+WHERE   (DA.ORIGIN_CITY ILIKE '%St Rose%' OR DA.ORIGIN_CITY ILIKE '%Secaucus%')
+  AND DA.ACTUAL_SHIPPED IS NOT NULL
+GROUP BY   TO_VARCHAR(TO_DATE(ACTUAL_SHIPPED), 'YYYY/MM'),  DA.ORIGIN_NAME
+ORDER BY   month_year,  DA.ORIGIN_NAME;
+
+SELECT TOP 100 * FROM DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING.MERCURY_GATE_ANALYTICS
+WHERE BOL_NUMBER like '%LH19940527%' OR BOL_NUMBER like '%IB19922791%' OR BOL_NUMBER like 'IB19616361%' OR BOL_NUMBER like 'LH17370569'
+OR BOL_NUMBER like 'IB18760969' OR BOL_NUMBER like 'STO19862551' OR BOL_NUMBER like 'LH19094162'OR BOL_NUMBER like'IB18913172';
+
+SELECT TOP 100 * FROM DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING.MERCURY_GATE_ANALYTICS
+WHERE PRO_NUMBER ilike '%8130100%' OR PO_NUMBER ilike '%8130100%' OR SAP_BOL_NUMBER ilike '%8130100%' OR ORDER_NUMBER  ilike '%8130100%';
+//0151677289
+
+SELECT TO_VARCHAR(TO_DATE(ACTUAL_SHIPPED), 'YYYY') AS YR,
+  DA.ORIGIN_STATE,  DA.MODE, COUNT(*) AS SHIPMENTS
+FROM DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING.MERCURY_GATE_ANALYTICS DA
+WHERE  DA.BOL_NUMBER like '%LH%'
+  AND DA.ACTUAL_SHIPPED IS NOT NULL 
+  AND DA.MODE = null
+GROUP BY   TO_VARCHAR(TO_DATE(ACTUAL_SHIPPED), 'YYYY'), DA.ORIGIN_STATE, DA.MODE
+ORDER BY   YR;
+
+
+SELECT 
+    A.FS_YR as Fiscal_Yr,
+    A.FS_PR as FS_Period, 
+    //TO_VARCHAR(TO_DATE(DROP_LATEST), 'YYYY/MM') AS month_year,
+    SUM(CASE 
+        WHEN A.SPOT_USED = TRUE THEN 1
+        ELSE 0
+        END )AS Spot_Used,
+    COUNT(*) AS Total_Shipments,
+    ROUND(
+        (SUM(CASE WHEN A.SPOT_USED = TRUE THEN 1 ELSE 0 END) / 
+         NULLIF(COUNT(*), 0)::FLOAT) * 100, 
+        2
+    ) AS "Spot_Used_%",
+   '$' || TO_VARCHAR(ROUND(SUM(CASE 
+    WHEN A.SPOT_USED = TRUE THEN SETTLEMENT_AMOUNT
+    ELSE 0
+    END), 0)) AS "Spot_Total",
+    '$' ||TO_VARCHAR(ROUND(AVG(CASE 
+    WHEN A.SPOT_USED = TRUE THEN SETTLEMENT_AMOUNT
+    ELSE NULL
+    END), 0)) AS "Avg_Spot",
+    '$' ||TO_VARCHAR(ROUND(SUM(SETTLEMENT_AMOUNT), 0)) AS "Avg_Rate",
+    '$' || TO_VARCHAR(ROUND(SUM(CASE 
+    WHEN A.SPOT_USED <> 'true' THEN SETTLEMENT_AMOUNT
+    ELSE 0
+    END), 0)) AS "Not_spot"
+FROM DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING.MERCURY_GATE_ANALYTICS A
+WHERE DROP_LATEST >= '01/01/2024' AND A.MODE = 'Truckload' AND BOL_NUMBER like '%IB%' AND MASTER_BOL_STATUS = 'Delivered'
+GROUP BY Fiscal_Yr, FS_Period
+ORDER BY Fiscal_Yr, FS_Period;
+
+SELECT MAX(SNOWFLAKE_LAST_UPDATED_TIMESTAMP) 
+FROM DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING.MERCURY_GATE_ANALYTICS ;
+
+Select TOP 10 HDPRO_ODS.ODS.REGION* from DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING.MERCURY_GATE_ANALYTICS
+WHERE DIRECTION in ('LH','STO');
+
+SELECT COUNT(*) AS Total_Shipments 
+FROM DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING.MERCURY_GATE_ANALYTICS A
+WHERE A.ORDER_NUMBER IS NOT NULL ; 
+LIMIT 10;
+
+SELECT * 
+FROM DM_SUPPLYCHAIN.TRANSPORTATION_REPORTING.MERCURY_GATE_ANALYTICS A
+WHERE A.MASTER_BOL_ID='329384948424'
