@@ -1,0 +1,55 @@
+STATE,ORIGIN_ST,REGION,DIVISION,RP_REGION,RP_DIV,reg_seq,div_seq
+Alaska,AK,West,Western,Pac Northwest,West,3,1
+Alabama,AL,Southeast,Central,Southeast West,East,3,11
+Arkansas,AR,Central,Central,Central South,West,2,1
+Arizona,AZ,West,Western,Pac Northwest,West,3,1
+California,CA,West,Western,West,West,1,1
+Colorado,CO,West,Western,Pac Northwest,West,3,1
+Connecticut,CT,Northeast,Northeast,Northeast,East,1,11
+Delaware,DE,Northeast,Northeast,Northeast,East,1,11
+Florida,FL,Southeast,East,Southeast West,East,3,11
+Georgia,GA,Southeast,Central,Southeast East,East,2,11
+Hawaii,HI,West,Western,Pac Northwest,West,3,1
+Iowa,IA,Central,Central,Central North,East,4,11
+Idaho,ID,West,Western,Pac Northwest,West,3,1
+Illinois,IL,Central,Central,Central North,East,4,11
+Indiana,IN,Central,Central,Central North,East,4,11
+Kansas,KS,Central,Central,Central North,East,4,11
+Kentucky,KY,Central,Central,Central North,East,4,11
+Louisiana,LA,Central,Central,Central South,West,2,1
+Massachusetts,MA,Northeast,Northeast,Northeast,East,1,11
+Maryland,MD,Northeast,Northeast,Northeast,East,1,11
+Maine,ME,Northeast,Northeast,Northeast,East,1,11
+Michigan,MI,Central,Central,Central North,East,4,11
+Minnesota,MN,Central,Central,Central North,East,4,11
+Missouri,MO,Central,Central,Central North,East,4,11
+Mississippi,MS,Southeast,Central,Southeast West,East,3,11
+Montana,MT,West,Western,Pac Northwest,West,3,1
+North Carolina,NC,Southeast,East,Southeast East,East,2,11
+North Dakota,ND,Central,Central,Central North,East,4,11
+Nebraska,NE,Central,Central,Central North,East,4,11
+New Hampshire,NH,Northeast,Northeast,Northeast,East,1,11
+New Jersey,NJ,Northeast,Northeast,Northeast,East,1,11
+New Mexico,NM,West,Western,Pac Northwest,West,3,1
+Nevada,NV,West,Western,West,West,1,1
+New York,NY,Northeast,Northeast,Northeast,East,1,11
+Ohio,OH,Central,Central,Central North,East,4,11
+Oklahoma,OK,Central,Central,Central South,West,2,1
+Ontario,ON,Central,Western,Central North,East,4,11
+Oregon,OR,West,Western,Pac Northwest,West,3,1
+Pennsylvania,PA,Northeast,Northeast,Northeast,East,1,11
+Rhode Island,RI,Northeast,Northeast,Northeast,East,1,11
+South Carolina,SC,Southeast,East,Southeast East,East,2,11
+South Dakota,SD,Central,Central,Central North,East,4,11
+,TL,No Region,No Region,No Region,No Region,99,99
+,TLAX,No Region,No Region,No Region,No Region,99,99
+Tennessee,TN,Southeast,Central,Southeast East,East,2,11
+Texas,TX,Central,Central,Central South,West,2,1
+Utah,UT,West,Western,Pac Northwest,West,3,1
+Virginia,VA,Northeast,Northeast,Northeast,East,1,11
+Vermont,VT,Northeast,Northeast,Northeast,East,1,11
+Washington,WA,West,Western,Pac Northwest,West,3,1
+Wisconsin,WI,Central,Central,Central North,East,4,11
+West Virginia,WV,Northeast,Central,Northeast,East,1,11
+Wyoming,WY,West,Western,Pac Northwest,West,3,1
+District of Columbia,DC,Northeast,East,Northeast,East,1,11
