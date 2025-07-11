@@ -1,0 +1,760 @@
+﻿TMS Name,DC Alias,Market,State
+HOME DEPOT PRO- ALABASTER,PRO286-Alabaster,Alabaster,AL
+HD Supply-04-HDS#2162,AL04-Birmingham,Birmingham,AL
+FM-HDS DC-BIRMINGHAM-AL04,AL04-Birmingham,Birmingham,AL
+FM-HD Supply DC-BIRMINGHAM,AL04-Birmingham,Birmingham,AL
+FM-BIRMINGHAM-Longbow Transportation,AL04-Birmingham,Birmingham,AL
+HOME DEPOT PRO- ALABASTER,PRO286-Alabaster,Alabaster,AL
+FM-MADISON-TQL Logistics,AL030-Huntsville,Huntsville,AL
+HOME DEPOT PRO- HUNTSVILLE,PRO297-Huntsville,Huntsville,AL
+HOME DEPOT PRO- HUNTSVILLE,PRO297-Huntsville,Huntsville,AL
+FM-HUNTSVILLE-TQL Logistics,AL036-Huntsville,Huntsville,AL
+MAGNOLIA DISTRIBUTION,AL027-Montgomery,Montgomery,AL
+FM-MONTGOMERY-CH Robinson,AL027-Montgomery,Montgomery,AL
+Mobile Cross Dock,AL028-Mobile,Mobile,AL
+FM-HDS XD-MOBILE,AL028-Mobile,Mobile,AL
+FM-HD Supply XD-MOBILE,AL028-Mobile,Mobile,AL
+HD Supply Birmingham Fulfillment DC,AL04-Birmingham,Birmingham,AL
+HDPROTX3,PRO803-Little Rock,Little Rock,AR
+FM-LITTLE ROCK-TQL,AR012-Little Rock,Little Rock,AR
+FM-HDS XD-LITTLE ROCK,AR012-Little Rock,Little Rock,AR
+FM-HD Supply XD-LITTLE ROCK,AR012-Little Rock,Little Rock,AR
+Home Depot Pro Phoenix,PRO246-Phoenix,Phoenix,AZ
+Home Depot Pro,Fix TMS,Fix TMS,AZ
+HD Supply-17-HDS#2610,AZ17-Phoenix,Phoenix,AZ
+FM-PHOENIX-Public Special,AZ17-Phoenix,Phoenix,AZ
+FM-HDS DC-PHOENIX-AZ17,AZ17-Phoenix,Phoenix,AZ
+FM-HD Supply-DC-PHOENIX,AZ17-Phoenix,Phoenix,IL
+FM-HD Supply DC-PHOENIX,AZ17-Phoenix,Phoenix,AZ
+FM-PHOENIX-OFFSITE,AZ17-Phoenix,Phoenix,AZ
+FM-HD Supply DC-PHOENIX - OFFSITE,AZ17-Phoenix,Phoenix,AZ
+Home Depot Pro Tolleson,PRO246-Phoenix,Phoenix,AZ
+HOME DEPOT PRO- PHOENIX,PRO246-Phoenix,Phoenix,AZ
+Home Depot Pro - Tolleson,PRO246-Phoenix,Phoenix,AZ
+HDPROAZ-D,PRO246-Phoenix,Phoenix,AZ
+FM-TUCSON-Central Arizona Freight,AZ097-Tucson,Tucson,AZ
+FM-TUCSON-Cross dock,AZ097-Tucson,Tucson,AZ
+FM-HDS XD-TUCSON,AZ097-Tucson,Tucson,AZ
+FM-HD Supply XD-TUCSON,AZ097-Tucson,Tucson,AZ
+Phoenix Fulfillment DC,AZ17-Phoenix,Phoenix,AZ
+HOME DEPOT PRO- COMMERCE 238,PRO238-Commerce,Commerce,CA
+HOME DEPOT PRO- COMMERCE 238,PRO238-Commerce,Commerce,CA
+HOME DEPOT PRO- COMMERCE,PRO238-Commerce,Commerce,CA
+HDP #3375 COMMERCE,PRO238-Commerce,Commerce,CA
+FM-VALENCIA-Public Special,CA263-San Fernando,San Fernando,CA
+FM-HDS XD-VALENCIA,CA263-San Fernando,San Fernando,CA
+FM-HD Supply XD-VALENCIA,CA263-San Fernando,San Fernando,CA
+HD Supply-City of Industry-IFC,ZZ81-LA Metro IFC,LA Metro IFC,CA
+THD PRO- JURUPA VALLEY,PRO199-Jurupa Valley,Jurupa Valley,CA
+HOME DEPOT PRO- JURUPA VALLEY,PRO199-Jurupa Valley,Jurupa Valley,CA
+HDP #3256 MIRA LOMA,PRO199-Jurupa Valley,Jurupa Valley,CA
+FM-HD Supply-LOS ANGELES Overflow Facility,CA20-LA Metro,LA Metro,CA
+FM-HD Supply OF-LOS ANGELES,CA20-LA Metro,LA Metro,CA
+Los Angeles Fulfillment DC,CA20-LA Metro,LA Metro,CA
+FM-Los Angeles-Linehaul,CA20-LA Metro,LA Metro,CA
+FM-HDS DC-LOS ANGELES-CA20,CA20-LA Metro,LA Metro,CA
+FM-HDS DC-LOS ANGELES-CA20,CA20-LA Metro,LA Metro,CA
+FM-HD Supply LH DC-CITY OF INDUSTRY,CA20-LA Metro,LA Metro,CA
+FM-HD Supply DC-LOS ANGELES,CA20-LA Metro,LA Metro,CA
+FM-HD Supply DC-CITY OF INDUSTRY,CA20-LA Metro,LA Metro,CA
+FM-HD Supply DC-CITY OF INDUSTRY,CA20-LA Metro,LA Metro,CA
+CA20 - COI HDS,CA20-LA Metro,LA Metro,CA
+San Diego Fulfillment DC,CA01-San Diego,San Diego,CA
+FM-SAN DIEGO-Public Special,CA01-San Diego,San Diego,CA
+FM-HDS DC-SAN DIEGO-CA01,CA01-San Diego,San Diego,CA
+FM-HD Supply DC-SAN DIEGO,CA01-San Diego,San Diego,CA
+HOME DEPOT PRO- SAN BERNARDINO RRC,PRO198-San Bernardino,San Bernardino,CA
+HOME DEPOT PRO- SAN BERNARDINO RRC,PRO198-San Bernardino,San Bernardino,CA
+HOME DEPOT PRO- SAN BERNARDINO RRC,PRO198-San Bernardino,San Bernardino,CA
+HOME DEPOT PRO- SAN BERNARDINO RRC,PRO198-San Bernardino,San Bernardino,CA
+HOME DEPOT PRO- SAN BERNARDINO RRC,PRO198-San Bernardino,San Bernardino,CA
+HOME DEPOT PRO- SAN BERNARDINO,PRO198-San Bernardino,San Bernardino,CA
+HOME DEPOT PRO- SAN BERNARDINO,PRO198-San Bernardino,San Bernardino,CA
+HDP #3273 SAN BERNARDINO,PRO198-San Bernardino,San Bernardino,CA
+FM-OXNARD-Public Special,CA244-Oxnard,Oxnard,CA
+FM-HDS XD-OXNARD,CA244-Oxnard,Oxnard,CA
+FM-HD Supply XD-OXNARD,CA244-Oxnard,Oxnard,CA
+FM-BAKERSFIELD-Dependable Highway,CA321-Bakersfield Xdock,Bakersfield Xdock,CA
+HOME DEPOT PRO- BAKERSFIELD,PRO240-Bakersfield,Bakersfield,CA
+HDP #3477 BAKERSFIELD,PRO240-Bakersfield,Bakersfield,CA
+FM-HDS XD-FRESNO,CA248-Fresno,Fresno,CA
+FM-HD Supply XD-FRESNO,CA248-Fresno,Fresno,CA
+FM-Fresno,CA294-Fresno,Fresno,CA
+FM-FRESNO-Crossdock,CA248-Fresno,Fresno,CA
+FM-SALINAS-TQL,CA259-Salinas,Salinas,CA
+FM-SALINAS,CA259-Salinas,Salinas,CA
+FM-HDS XD-SALINAS,CA259-Salinas,Salinas,CA
+FM-HD Supply XD-SALINAS,CA259-Salinas,Salinas,CA
+HD Supply-39-HDS#2651,CA49-Hayward,Hayward,CA
+Hayward Fulfillment DC,CA49-Hayward,Hayward,CA
+FM-HDS DC-HAYWARD-CA49,CA49-Hayward,Hayward,CA
+FM-HD Supply DC-HAYWARD,CA49-Hayward,Hayward,CA
+FM-HAYWARD-TQL,CA49-Hayward,Hayward,CA
+FM-HAYWARD-Gardner Trucking,CA49-Hayward,Hayward,CA
+HOME DEPOT PRO- SAN JOSE,PRO236-San Jose,San Jose,CA
+HOME DEPOT PRO- SAN JOSE,PRO236-San Jose,San Jose,CA
+HDP #3495-2 SAN JOSE,PRO236-San Jose,San Jose,CA
+HOME DEPOT PRO - MANTECA,PRO5121-Stockton,Stockton,CA
+FM-HDS XD-MANTECA,CA342-Modesto,Modesto,CA
+FM-HD Supply XD-MANTECA,CA342-Modesto,Modesto,CA
+FM-DC-MANTECA,CA342-Modesto,Modesto,CA
+HD SUPPLY - MODESTO,CA342-Modesto,Modesto,CA
+FM-PETALUMA-LINEHAUL,CA242-Petaluma,Petaluma,CA
+FM-HDS XD-SANTA ROSA,CA242-Petaluma,Petaluma,NJ
+FM-HD Supply XD-SANTA ROSA,CA242-Petaluma,Petaluma,NJ
+Sacramento Fulfillment DC,CA05-Sacramento,Sacramento,CA
+HD Supply-05-HDS#2603,CA05-Sacramento,Sacramento,CA
+FM-SACRAMENTO-Public Special,CA05-Sacramento,Sacramento,CA
+FM-HDS DC-SACRAMENTO-CA05,CA05-Sacramento,Sacramento,CA
+FM-HDS DC-SACRAMENTO-CA05,CA05-Sacramento,Sacramento,CA
+FM-HD Supply DC-SACRAMENTO,CA05-Sacramento,Sacramento,CA
+FM-HD Supply DC-SACRAMENTO,CA05-Sacramento,Sacramento,CA
+Sacramento Off-site,CA05-Sacramento,Sacramento,CA
+Sacramento Fulfillment DC - Offsite,CA05-Sacramento,Sacramento,CA
+HDP-SACRAMENTO-OFFSITE,CA05-Sacramento,Sacramento,CA
+FM-DC-SACRAMENTO-OFFSITE,CA05-Sacramento,Sacramento,CA
+CA05 - West Sacramento,CA05-Sacramento,Sacramento,CA
+HOME DEPOT PRO- SACRAMENTO 41,PRO041-Sacramento,Sacramento,CA
+HOME DEPOT PRO- SACRAMENTO,PRO041-Sacramento,Sacramento,CA
+HDP #3261 SACRAMENTO,PRO041-Sacramento,Sacramento,CA
+HD Supply-20-HDS#2613,CA20-LA Metro,LA Metro,CA
+HOME DEPOT PRO- AURORA,PRO273-Aurora,Aurora,CO
+HOME DEPOT PRO- AURORA,PRO273-Aurora,Aurora,CO
+HDP #3257 AURORA,PRO273-Aurora,Aurora,CO
+HDP - DENVER LDC,PRO273-Aurora,Aurora,CO
+HD Supply-11-HDS#2606,CO11-Denver,Denver,CO
+FM-HDS DC-DENVER-CO11,CO11-Denver,Denver,CO
+FM-HD Supply DC-DENVER,CO11-Denver,Denver,CO
+FM-DENVER-TQL,CO11-Denver,Denver,CO
+HD SUPPLY CO79,CO79-Colorado Springs Cross Dock,Colorado Springs Cross Dock,CO
+HOME DEPOT PRO- COLORADO SPRINGS,CO080-Colorado Springs Cross Dock,Colorado Springs Cross Dock,CO
+Denver Fulfillment DC,CO11-Denver,Denver,CO
+FM-WINDSOR LOCKS-Mark IV Transportation,CT008-Hartford,Hartford,CT
+FM-HDS XD-WINDSOR LOCKS,CT008-Hartford,Hartford,CT
+FM-HD Supply XD-WINDSOR LOCKS,CT008-Hartford,Hartford,CT
+HD PRO JACKSONVILLE,PRO208-Jacksonville,Jacksonville,FL
+Jacksonville Fulfillment Center,FL29-Jacksonville,Jacksonville,FL
+HD Supply-29-HDS#2165,FL29-Jacksonville,Jacksonville,FL
+FM-JACKSONVILLE-JB Hunt,FL29-Jacksonville,Jacksonville,FL
+FM-HDS DC-JACKSONVILLE-FL29,FL29-Jacksonville,Jacksonville,FL
+FM-HD Supply DC-JACKSONVILLE,FL29-Jacksonville,Jacksonville,FL
+HOME DEPOT PRO- JACKSONVILLE RRC,PRO208-Jacksonville,Jacksonville,FL
+HOME DEPOT PRO- JACKSONVILLE 289,PRO208-Jacksonville,Jacksonville,FL
+HOME DEPOT PRO- JACKSONVILLE 175,PRO208-Jacksonville,Jacksonville,FL
+HOME DEPOT PRO- JACKSONVILLE,PRO208-Jacksonville,Jacksonville,FL
+HOME DEPOT PRO JACKSONVILLE,PRO208-Jacksonville,Jacksonville,FL
+HDP-JACKSONVILLE (Pritch),PRO208-Jacksonville,Jacksonville,FL
+HDP #3347 JACKSONVILLE,PRO208-Jacksonville,Jacksonville,FL
+HDP #3347 JACKSONVILLE,PRO208-Jacksonville,Jacksonville,FL
+HDP #3227-2 JACKSONVILLE,PRO208-Jacksonville,Jacksonville,FL
+HDP #3227-2 JACKSONVILLE,PRO208-Jacksonville,Jacksonville,FL
+HDP #3227-1 JACKSONVILLE,PRO208-Jacksonville,Jacksonville,FL
+HD Supply Jacksonville,FL29-Jacksonville,Jacksonville,FL
+HOME DEPOT PRO- JACKSONVILLE RRC,PRO208-Jacksonville,Jacksonville,FL
+HOME DEPOT PRO- JACKSONVILLE RRC,PRO208-Jacksonville,Jacksonville,FL
+HOME DEPOT PRO- JACKSONVILLE 208,PRO208-Jacksonville,Jacksonville,FL
+FM-TALLAHASSEE-Supersonic of Florida,FL248-Tallahassee,Tallahassee,FL
+FM-PENSACOLA-CH Robinson,FL264-Pensacola,Pensacola,FL
+FM-HDS XD-PENSACOLA,FL264-Pensacola,Pensacola,FL
+FM-HD Supply XD-PENSACOLA,FL264-Pensacola,Pensacola,FL
+Orlando Fulfillment Center DC,FL45-Orlando,Orlando,FL
+HD Supply-43-HDS#2647,FL45-Orlando,Orlando,FL
+FM-ORLANDO-JB Hunt,FL45-Orlando,Orlando,FL
+FM-HDS DC-ORLANDO-FL45,FL45-Orlando,Orlando,FL
+FM-HD Supply DC-ORLANDO,FL45-Orlando,Orlando,FL
+HOME DEPOT PRO- ORLANDO,PRO290-Orlando,Orlando,FL
+HOME DEPOT PRO- ORLANDO,PRO290-Orlando,Orlando,FL
+HOME DEPOT PRO- ORLANDO PRO CENTER,PRO290-Orlando,Orlando,FL
+Miami Fulfillment Center DC,FL19-Miami,Miami,FL
+FM-Miami-Linehaul,FL19-Miami,Miami,FL
+FM-HDS DC-MIAMI-FL19,FL19-Miami,Miami,FL
+FM-HD Supply DC-MIAMI,FL19-Miami,Miami,FL
+HOME DEPOT PRO- POMPANO BEACH OFFSITE,PRO154-Pompano Beach,Pompano Beach,FL
+HOME DEPOT PRO- POMPANO BEACH,PRO154-Pompano Beach,Pompano Beach,FL
+HOME DEPOT PRO- POMPANO BEACH,PRO154-Pompano Beach,Pompano Beach,FL
+HD Supply-16-HDS#2163,FL16-Tampa,Tampa,FL
+HD SUPPLY TAMPA,FL16-Tampa,Tampa,FL
+FM-TAMPA-Linehaul,FL16-Tampa,Tampa,FL
+FM-HD Supply DC-TAMPA,FL16-Tampa,Tampa,FL
+HOME DEPOT PRO- TAMPA,PRO215-Tampa,Tampa,FL
+FM-LAKELAND-Exxact Express,FL14-Lakeland,Lakeland,FL
+FM-HDS DC-LAKELAND-FL14,FL14-Lakeland,Lakeland,FL
+FM-HD Supply LH DC-LAKELAND,FL14-Lakeland,Lakeland,FL
+FM-HD Supply DC-LAKELAND,FL14-Lakeland,Lakeland,FL
+FM-FT MYERS-Shore to Shore,FL262-Fort Myers,Fort Myers,FL
+FM-HDS XD-FORT MYERS,FL262-Fort Myers,Fort Myers,FL
+FM-HD Supply XD-FORT MYERS,FL262-Fort Myers,Fort Myers,FL
+HOME DEPOT PRO- FORT MYERS,PRO282-Fort Myers,Fort Myers,FL
+HOME DEPOT PRO- FORT MYERS,PRO282-Fort Myers,Fort Myers,FL
+HOME DEPOT PRO- TALLAHASSEE,FL248-Tallahassee,Tallahassee,FL
+FM-HDS XD-TALLAHASSEE,FL248-Tallahassee,Tallahassee,FL
+FM-HD Supply XD-TALLAHASSEE,FL248-Tallahassee,Tallahassee,FL
+Facilities Maintenance Core  (Southeast Region),FL248-Tallahassee,Tallahassee,FL
+HD Supply-19-HDS#2612,FL19-Miami,Miami,FL
+Tampa Fulfillment Center DC,FL16-Tampa,Tampa,FL
+FM-HDS DC-TAMPA-FL16,FL16-Tampa,Tampa,FL
+Lakeland Fulfillment Center DC,FL14-Lakeland,Lakeland,FL
+HD Supply-14-HDS#2608,FL14-Lakeland,Lakeland,FL
+Peachtree Business Solutions-HDS#2191,GA07-Marietta,Marietta,GA
+FM-HDS DC-MARIETTA-GA07,GA07-Marietta,Marietta,GA
+FM-HD Supply DC-MARIETTA,GA07-Marietta,Marietta,GA
+FM-HD Supply-NORCROSS Overflow Facility,GA02-Atlanta,Atlanta,GA
+HD Supply - Atlanta Offsite,GA02-Atlanta,Atlanta,GA
+Forest Park,GA02-Atlanta,Atlanta,GA
+HD Supply-Forest Park-IFC,ZZ84-Atlanta IFC,Atlanta IFC,GA
+USABB-914-HDS#2166,GA02-Atlanta,Atlanta,GA
+HD Supply-02-HDS#26010,GA02-Atlanta,Atlanta,GA
+FM-HDS DC-ATLANTA-GA02,GA02-Atlanta,Atlanta,GA
+FM-HD Supply DC-ATLANTA,GA02-Atlanta,Atlanta,GA
+FM-Atlanta-Offsite,GA02-Atlanta,Atlanta,GA
+FM-Atlanta-Linehaul,GA02-Atlanta,Atlanta,GA
+Atlanta Fulfillment DC,GA02-Atlanta,Atlanta,GA
+Atlanta Fulfillment DC,GA02-Atlanta,Atlanta,GA
+Atlanta Fulfillment Center DC,GA02-Atlanta,Atlanta,GA
+PRO DORAVILLE,PRO006-Doraville,Doraville,GA
+HOME DEPOT PRO- DORAVILLE,PRO006-Doraville,Doraville,GA
+HOME DEPOT PRO- DORAVILLE,PRO006-Doraville,Doraville,GA
+HDP #3277 ATLANTA,PRO006-Doraville,Doraville,GA
+DORAVILLE,PRO006-Doraville,Doraville,GA
+Maersk WnD Services,ZZ84-Savannah Maersk,Savannah Maersk,GA
+Maersk,ZZ84-Savannah Maersk,Savannah Maersk,GA
+FM-SAVANNAH-LTAG,GA041-Savannah,Savannah,GA
+FM-HDS XD-SAVANNAH,GA041-Savannah,Savannah,GA
+FM-HD Supply XD-SAVANNAH,GA041-Savannah,Savannah,GA
+HDS Marietta Fulfillment DC,GA07-Marietta,Marietta,GA
+HOME DEPOT SUPPLY,PRO006-Doraville,Doraville,GA
+FM-HDS XD-CLIVE,IA011-Des Moines,Des Moines,IA
+FM-HD Supply XD-CLIVE,IA011-Des Moines,Des Moines,IA
+FM-CLIVE-TQL Logistics,IA011-Des Moines,Des Moines,IA
+HOME DEPOT PRO- DAVENPORT,PRO125-Davenport,Davenport,IA
+HOME DEPOT PRO- LOMBARD,PRO207-Lombard,Lombard,IL
+HOME DEPOT PRO- LOMBARD,PRO207-Lombard,Lombard,IL
+HDP #3259 LOMBARD,PRO207-Lombard,Lombard,IL
+FM-HDS DC-CHICAGO-IL30,IL30-Chicago,Chicago,IL
+FM-HD Supply DC-CHICAGO,IL30-Chicago,Chicago,IL
+FM-Chicago-Linehaul,IL30-Chicago,Chicago,IL
+FM-HD Supply-NORTHLAKE Overflow Facility,IL30-Chicago WD,Chicago WD,IL
+FM-HD Supply-NORTHLAKE Overflow Facility,IL30-Chicago WD,Chicago WD,IL
+FM-HD Supply OF-CHICAGO,IL032-WoodDale,WoodDale,IL
+Home Depot Monee,Fix TMS,Fix TMS,IL
+Home Depot,Fix TMS,Fix TMS,IL
+THE HOME DEPOT - BOLINGBROOK STORAGE,IL040-Naperville,Naperville,IL
+Bolingbrook,IL040-Naperville,Naperville,IL
+unknown,IL30-Chicago,Chicago,IL
+Naperville,IL30-Chicago,Chicago,IL
+HDP NAPERVILLE,IL30-Chicago,Chicago,IL
+HD Supply (Storage Warehouse),IL30-Chicago,Chicago,IL
+Global Computer Supplies,NAN-Vendor,Vendor,IL
+Global Computer Supplies,NAN-Vendor,Vendor,IL
+HOME DEPOT PRO- PEORIA,PRO126-Peoria,Peoria,IL
+HOME DEPOT PRO- HERRIN,IL039-Herrin,Herrin,IL
+HD Supply-30-HDS#2618,IL30-Chicago,Chicago,IL
+Chicago Fulfillment Center DC,IL30-Chicago,Chicago,IL
+THD PRO- FISHERS,PRO004-Indianapolis,Indianapolis,IN
+HOME DEPOT PRO- FISHERS,PRO004-Indianapolis,Indianapolis,IN
+HOME DEPOT PRO- FISHERS,PRO004-Indianapolis,Indianapolis,IN
+Indianapolis Fulfillment DC,IN41-Indianapolis,Indianapolis,IN
+FM-INDIANAPOLIS-Linehaul,IN41-Indianapolis,Indianapolis,IN
+FM-HDS DC-INDIANAPOLIS-IN41,IN41-Indianapolis,Indianapolis,IN
+FM-HD Supply-DC-INDIANAPOLIS,IN41-Indianapolis,Indianapolis,IN
+FM-HD Supply DC-INDIANAPOLIS,IN41-Indianapolis,Indianapolis,IN
+Fort Wayne Cross-dock,IN034-Fort Wayne,Fort Wayne,IN
+FM-HDS XD-FORT WAYNE,IN034-Fort Wayne,Fort Wayne,IN
+FM-HD Supply-XD-FORT WAYNE,IN034-Fort Wayne,Fort Wayne,IN
+FM-HD Supply XD-FORT WAYNE,IN034-Fort Wayne,Fort Wayne,IN
+FM-FORT WAYNE-Wheels Assured,IN034-Fort Wayne,Fort Wayne,IN
+HD Supply-37-HDS#2643,IN41-Indianapolis,Indianapolis,IN
+THD PRO- SHAWNEE,PRO233-Shawnee,Shawnee,KS
+HOME DEPOT PRO- SHAWNEE,PRO233-Shawnee,Shawnee,KS
+Home Depot Pro - Shawnee,PRO233-Shawnee,Shawnee,KS
+HDP #3283 SHAWNEE,PRO233-Shawnee,Shawnee,KS
+FM-LOUISVILLE-Crossdock,KY021-Louisville,Louisville,KY
+FM-LOUISVILLE-ECM Transport,KY018-Louisville,Louisville,KY
+FM-LOUISVILLE-Crossdock,KY018-Louisville,Louisville,KY
+FM-HD Supply-DC-LOUISVILLE,KY018-Louisville,Louisville,KY
+HOME DEPOT PRO- LOUISVILLE,KY022-Louisville,Louisville,KY
+HDP #3231 LOUISVILLE,KY022-Louisville,Louisville,KY
+HD SUPPLY DOCK,LA46-New Orleans,New Orleans,LA
+FM-HD Supply DC-NEW ORLEANS,LA46-New Orleans,New Orleans,LA
+FM-ST ROSE-ATS,LA46-New Orleans,New Orleans,LA
+FM-HDS DC-NEW ORLEANS-LA46,LA46-New Orleans,New Orleans,LA
+HOME DEPOT PRO- HARAHAN,PRO046-New Orleans,New Orleans,LA
+HOME DEPOT PRO- HARAHAN,PRO046-New Orleans,New Orleans,LA
+Home Depot Pro Harahan,PRO046-New Orleans,New Orleans,LA
+HDP #3275 HARAHAN,PRO046-New Orleans,New Orleans,LA
+FM-SHREVEPORT-AAFG,LA34-Shreveport,Shreveport,LA
+FM-HDS XD-SHREVEPORT,LA34-Shreveport,Shreveport,LA
+FM-HD Supply XD-SHREVEPORT,LA34-Shreveport,Shreveport,LA
+HOME DEPOT PRO- AUBURN,MA021A-Auburn,Auburn,MA
+Home Depot Pro - Auburn,MA021A-Auburn,Auburn,MA
+HDP #3272 AUBURN,MA021A-Auburn,Auburn,MA
+HDP #3271 AUBURN,MA021A-Auburn,Auburn,MA
+HD Supply-21-HDS#2614,MA21-Boston,Boston,MA
+FM-HDS DC-BOSTON-MA21,MA21-Boston,Boston,MA
+FM-HD Supply DC-BOSTON,MA21-Boston,Boston,MA
+FM-BOSTON-Linehaul,MA21-Boston,Boston,MA
+Boston Fulfillment Center DC,MA21-Boston,Boston,MA
+HD SUPPLY - GLEN BERNIE,MD23-Baltimore,Baltimore,MD
+HD Supply-23-HDS#2616,MD23-Baltimore,Baltimore,MD
+HD SUPPLY - HANOVER,MD23-Baltimore,Baltimore,MD
+FM-HDS DC-BALTIMORE-MD23,MD23-Baltimore,Baltimore,MD
+FM-HD Supply XD-HANOVER,MD23-Baltimore,Baltimore,MD
+FM-HD Supply DC-BALTIMORE,MD23-Baltimore,Baltimore,MD
+FM-HANOVER-Cowan Systems,MD23-Baltimore,Baltimore,MD
+HOME DEPOT PRO- HANOVER,PRO391-Hanover,Hanover,MD
+HOME DEPOT PRO - HANOVER,PRO391-Hanover,Hanover,MD
+FM-HDS DC-BALTIMORE-MD23,MD23-Baltimore,Baltimore,MD
+Baltimore Fulfillment Centr DC,MD23-Baltimore,Baltimore,MD
+FM-LIVONIA-ECM Transport,MI40-Detroit,Detroit,MI
+FM-HDS DC-DETROIT-MI40,MI40-Detroit,Detroit,MI
+FM-HD Supply DC-DETROIT,MI40-Detroit,Detroit,MI
+Detroit Fulfillment DC,MI40-Detroit,Detroit,MI
+HD Supply Canada,HDS Canada,Plymouth,MI
+HOME DEPOT PRO- FARMINGTON,PRO019-Farmington Hills,Farmington Hills,MI
+HOME DEPOT PRO- FARMINGTON,PRO019-Farmington Hills,Farmington Hills,MI
+THD PRO- FARMINGTON HILLS,PRO019-Farmington Hills,Farmington Hills,MI
+HOME DEPOT PRO- FARMINGTON,PRO019-Farmington Hills,Farmington Hills,MI
+VENDOR,NAN-Vendor,Vendor,MI
+Northern Logistics,XX99-Grand Rapids,Grand Rapids,MI
+FM-BYRON CENTER-Northern Logistics,MI020-Grand Rapids,Grand Rapids,MI
+HOME DEPOT PRO- SAINT PAUL,MN026-Minneapolis,Minneapolis,MN
+HDP #3285 SAINT PAUL,MN026-Minneapolis,Minneapolis,MN
+Home Depot Pro St Paul,MN026-Minneapolis,Minneapolis,MN
+HD Supply Eagan Fulfillment DC,MN55-Minneapolis,Minneapolis,MN
+HD SUPPLY - EAGAN,MN55-Minneapolis,Minneapolis,MN
+FM-Minneapolis - LH,MN55-Minneapolis,Minneapolis,MN
+FM-HDS DC-MINNEAPOLIS-MN55,MN55-Minneapolis,Minneapolis,MN
+FM-HD Supply-DC-MINNEAPOLIS,MN55-Minneapolis,Minneapolis,MN
+FM-HD Supply DC-MINNEAPOLIS,MN55-Minneapolis,Minneapolis,MN
+FM-DC-MINNEAPOLIS,MN55-Minneapolis,Minneapolis,MN
+HOME DEPOT PRO- HAZELWOOD,PRO245-Hazelwood,Hazelwood,MO
+FM-HDS DC-ST LOUIS-MO15,MO15-St Louis,St Louis,MO
+FM-HD Supply DC-ST LOUIS,MO15-St Louis,St Louis,MO
+FM-EARTH CITY-TQL Logistics,MO15-St Louis,St Louis,MO
+FM-KANSAS CITY-TQL,MO42-Kansas City,Kansas City,MO
+Kansas City Fulfillment DC,MO42-Kansas City,Kansas City,MO
+FM-HDS DC-KANSAS CITY-MO42,MO42-Kansas City,Kansas City,MO
+FM-HD Supply DC-KANSAS CITY,MO42-Kansas City,Kansas City,MO
+St. Louis Fulfillment Centr DC,MO15-St Louis,St Louis,MO
+HD Supply-15-HDS#2609,MO15-St Louis,St Louis,MO
+FM-PEARL-Cross dock,MS026-Jackson,Jackson,MS
+FM-HDS XD-PEARL,MS026-Jackson,Jackson,MS
+FM-HD Supply XD-PEARL,MS026-Jackson,Jackson,MS
+FM-RURAL HALL LINEHAUL,NC085-Greensboro,Greensboro,NC
+FM-HD Supply XD-RURAL HALL,NC085-Greensboro,Greensboro,NC
+HOME DEPOT PRO- RURAL HALL,PRO296-Rural Hall,Rural Hall,NC
+FM-GREENSBORO-Pilot,NC085-Greensboro,Greensboro,NC
+Raleigh Fulfillment DC,NC38-Raleigh,Raleigh,NC
+HD Supply-46-HDS#2640,NC38-Raleigh,Raleigh,NC
+FM-MORRISVILLE-Linehaul,NC38-Raleigh,Raleigh,NC
+FM-HDS DC-RALEIGH-NC38,NC38-Raleigh,Raleigh,NC
+FM-HDS DC-RALEIGH-NC38,NC38-Raleigh,Raleigh,NC
+FM-HDS DC-RALEIGH-NC38,NC38-Raleigh,Raleigh,NC
+FM-HD Supply DC-RALEIGH,NC38-Raleigh,Raleigh,NC
+KERRY ROCKFORD,NC38-Raleigh,Raleigh,NC
+HOME DEPOT PRO- CHARLOTTE,PRO014-Charlotte,Charlotte,NC
+HOME DEPOT PRO- CHARLOTTE,PRO014-Charlotte,Charlotte,NC
+HD Supply-34-HDS#2636,NC34-Charlotte,Charlotte,NC
+FM-HDS DC-CHARLOTTE-NC34,NC34-Charlotte,Charlotte,NC
+FM-HDS DC-CHARLOTTE-NC34,NC34-Charlotte,Charlotte,NC
+FM-HD Supply DC-CHARLOTTE,NC34-Charlotte,Charlotte,NC
+FM-CHARLOTTE-Longbow Transportation,NC34-Charlotte,Charlotte,NC
+FM-LELAND-Pilot,NC086-Wilmington,Wilmington,NC
+FM-HDS XD-LELAND,NC086-Wilmington,Wilmington,NC
+FM-HD Supply XD-LELAND,NC086-Wilmington,Wilmington,NC
+FM-HDS DC-CHARLOTTE-NC34,NC34-Charlotte,Charlotte,NC
+Charlotte Fulfillment Centr DC,NC34-Charlotte,Charlotte,NC
+FM-OMAHA-TQL Logistics,NE006-Omaha,Omaha,NE
+HOME DEPOT PRO- OMAHA,NE008-Omaha,Omaha,NE
+North Jersey Bayonne Fulfillment Centr,NJ056-Bayonne,Bayonne,NJ
+North Jersey Bayonne Fulfillment,NJ056-Bayonne,Bayonne,NJ
+FM-HDS DC-BAYONNE-NJ56,NJ056-Bayonne,Bayonne,NJ
+FM-HD Supply DC-BAYONNE,NJ056-Bayonne,Bayonne,NJ
+HD Supply-06-HDS#2161,NJ06-North Jersey,North Jersey,NJ
+FM-SECAUCUS-LINEHAUL,NJ06-North Jersey,North Jersey,NJ
+FM-HD Supply DC-SECAUCUS,NJ06-North Jersey,North Jersey,NJ
+HD Supply-Philadelphia-IFC,ZZ85-Philadelphia IFC,Philadelphia IFC,NJ
+HD Supply-22-HDS#2615,NJ22-Philadelphia,Philadelphia,NJ
+FM-Philadelphia-Linehaul,NJ22-Philadelphia,Philadelphia,NJ
+FM-Philadelphia - MRO,NJ22-Philadelphia,Philadelphia,NJ
+FM-HDS DC-PHILADELPHIA-NJ22,NJ22-Philadelphia,Philadelphia,NJ
+FM-HD Supply-PHILADELPHIA Overflow Facility,NJ22-Philadelphia,Philadelphia,NJ
+FM-HD Supply OF-PHILADELPHIA,NJ22-Philadelphia,Philadelphia,NJ
+FM-HD Supply OF-PHILADELPHIA,NJ22-Philadelphia,Philadelphia,NJ
+FM-HD Supply LH DC-PHILADELPHIA,NJ22-Philadelphia,Philadelphia,NJ
+FM-HD Supply DC-PHILADELPHIA,NJ22-Philadelphia,Philadelphia,NJ
+FM-HDS XD-PISCATAWAY,NJ99-Somerset Xdock,Somerset Xdock,NJ
+FM-HD Supply XD-PISCATAWAY,NJ99-Somerset Xdock,Somerset Xdock,NJ
+Continental Courier Dock,NJ99-Somerset Xdock,Somerset Xdock,NJ
+North Jersey Fulfillment Centr,NJ06-North Jersey,North Jersey,NJ
+Philadelphia Fulfillment Centr,NJ22-Philadelphia,Philadelphia,NJ
+FM-ALBUQUERQUE-Central Arizona Freight,NM020-Albuquerque,Albuquerque,NM
+HDPROAZ,NM020-Albuquerque Pro,Albuquerque Pro,NM
+FM-HDS XD-ALBUQUERQUE,NM020-Albuquerque Pro,Albuquerque Pro,NM
+FM-HD Supply XD-ALBUQUERQUE,NM020-Albuquerque Pro,Albuquerque Pro,NM
+FM-ALBUQUERQUE- Cross Dock,NM020-Albuquerque,Albuquerque,NM
+HOME DEPOT PRO- NORTH LAS VEGAS,NV049-Las Vegas,Las Vegas,NV
+HDP #3292 NORTH LAS VEGAS,NV049-Las Vegas,Las Vegas,NV
+HD Pro North Las Vegas DC,NV049-Las Vegas,Las Vegas,NV
+Las Vegas Fulfillment DC,NV39-Las Vegas,Las Vegas,NV
+FM-LAS VEGAS-Public Special,NV39-Las Vegas,Las Vegas,NV
+FM-HDS DC-LAS VEGAS-NV39,NV39-Las Vegas,Las Vegas,NV
+FM-HD Supply DC-LAS VEGAS,NV39-Las Vegas,Las Vegas,NV
+FM-SPARKS-Linehaul,NV301-Reno,Reno,NV
+FM-HDS XD-SPARKS,NV301-Reno,Reno,NV
+FM-HD Supply XD-SPARKS,NV301-Reno,Reno,NV
+FM-HDS XD-ALBANY,NY99-Albany,Albany,NY
+FM-HD Supply XD-ALBANY,NY99-Albany,Albany,NY
+FM-ALBANY-HDS Shuttle,NY99-Albany,Albany,NY
+FM-SYRACUSE-Mark IV Transportation,NY019-Syracuse,Syracuse,NY
+FM-HDS XD-SYRACUSE,NY019-Syracuse,Syracuse,NY
+FM-HD Supply XD-SYRACUSE,NY019-Syracuse,Syracuse,NY
+FM-HDS XD-CHEEKTOWAGA,NY018-Buffalo,Buffalo,NY
+FM-HD Supply-XD-BUFFALO,NY018-Buffalo,Buffalo,NY
+FM-HD Supply XD-CHEEKTOWAGA,NY018-Buffalo,Buffalo,NY
+FM-BUFFALO-Linehaul,NY018-Buffalo,Buffalo,NY
+FM-HD Supply DC-BUFFALO (Cross Dock),NY018-Buffalo,Buffalo,NY
+FM-BUFFALO-Linehaul,NY018-Buffalo,Buffalo,NY
+FM-Buffalo-Linehaul,NY018-Buffalo,Buffalo,NY
+NFI GROVEPORT,OH36-Columbus,Columbus,OH
+HD Supply-36-HDS#2638,OH36-Columbus,Columbus,OH
+FM-HDS DC-COLUMBUS-OH36,OH36-Columbus,Columbus,OH
+FM-HDS DC-COLUMBUS-OH36,OH36-Columbus,Columbus,OH
+FM-HD Supply LH DC-COLUMBUS,OH36-Columbus,Columbus,OH
+FM-HD Supply DC-COLUMBUS,OH36-Columbus,Columbus,OH
+FM-HD Supply DC-COLUMBUS,OH36-Columbus,Columbus,OH
+Columbus Fulfillment DC,OH36-Columbus,Columbus,OH
+Columbus Fulfillment DC,OH36-Columbus,Columbus,OH
+HOME DEPOT PRO- COLUMBUS,OH069-Columbus,Columbus,OH
+HDP #3294 COLUMBUS,OH069-Columbus,Columbus,OH
+FM-GLENWILLOW-ECM Transport,OH13-Cleveland,Cleveland,OH
+FM-HDS DC-CLEVELAND-OH13,OH13-Cleveland,Cleveland,OH
+FM-HD Supply DC-CLEVELAND,OH13-Cleveland,Cleveland,OH
+Cleveland Fulfillment DC,OH13-Cleveland,Cleveland,OH
+FM-HDS XD-CINCINNATI,OH67-Cincinnati,Cincinnati,OH
+FM-HD Supply-XD-CINCINNATI,OH67-Cincinnati,Cincinnati,OH
+FM-HD Supply XD-CINCINNATI,OH67-Cincinnati,Cincinnati,OH
+FM-CINCINNATI-ECM Transport,OH67-Cincinnati,Cincinnati,OH
+FM-CINCINNATI,OH67-Cincinnati,Cincinnati,OH
+HOME DEPOT PRO- CINCINNATI,PRO256-Cincinnati,Cincinnati,OH
+HD Supply-13-HDS#2607,OH13-Cleveland,Cleveland,OH
+HD Supply-28-HDS#2658,OK28-Oklahoma,Oklahoma,OK
+FM-OKLAHOMA CITY-TQL Logistics,OK28-Oklahoma,Oklahoma,OK
+FM-HD Supply DC-OKLAHOMA CITY,OK28-Oklahoma,Oklahoma,OK
+HOME DEPOT PRO- TULSA,PRO138-Tulsa,Tulsa,OK
+HOME DEPOT PRO- TULSA,PRO138-Tulsa,Tulsa,OK
+FM-TULSA-TQYL,OK023-Tulsa,Tulsa,OK
+FM-HDS XD-TULSA,OK023-Tulsa,Tulsa,OK
+FM-HD Supply XD-TULSA,OK023-Tulsa,Tulsa,OK
+Oklahoma City Fulfillment Center,OK28-Oklahoma,Oklahoma,OK
+FM-HDS DC-OKLAHOMA CITY-OK28,OK28-Oklahoma,Oklahoma,OK
+FM-HDS DC-OKLAHOMA CITY-OK28,OK28-Oklahoma,Oklahoma,OK
+HD Supply-45-HDS#2649,OR47-Portland,Portland,OR
+Portland Fulfillment Center,OR47-Portland,Portland,OR
+FM-TUALATIN-TQL Logistics,OR47-Portland,Portland,OR
+FM-HDS DC-PORTLAND-OR47,OR47-Portland,Portland,OR
+FM-HD Supply DC-PORTLAND,OR47-Portland,Portland,OR
+HOME DEPOT PRO- PORTLAND,PRO165-Portland,Portland,OR
+HOME DEPOT PRO- PORTLAND,PRO165-Portland,Portland,OR
+FM-HDS XD-EUGENE,OR017-Eugene,Eugene,OR
+FM-HD Supply XD-EUGENE,OR017-Eugene,Eugene,OR
+FM-EUGENE,OR017-Eugene,Eugene,OR
+HOME DEPOT PRO- EUGENE,OR018B-Eugene,Eugene,OR
+HOME DEPOT PRO- BEAVER FALLS,PA039-Pittsburgh,Pittsburgh,PA
+Home Depot Pro Beaver Falls,PA039-Pittsburgh,Pittsburgh,PA
+HDP #3281 BEAVER FALLS,PA039-Pittsburgh,Pittsburgh,PA
+FM-BEAVER FALLS PRO,PRO026-Pittsburgh,Pittsburgh,PA
+FM-HDS XD-HARRISBURG,PA032-Harrisburg,Harrisburg,PA
+FM-HD Supply XD-HARRISBURG,PA032-Harrisburg,Harrisburg,PA
+FM-HARRISBURG-Cowan Systems,PA032-Harrisburg,Harrisburg,PA
+HOME DEPOT PRO- LANGHORNE 349,PRO206-Levittown,Levittown,PA
+HOME DEPOT PRO- LEVITTOWN RRC,PRO206-Levittown,Levittown,PA
+HOME DEPOT PRO- LEVITTOWN RRC,PRO206-Levittown,Levittown,PA
+HOME DEPOT PRO- LEVITTOWN RRC,PRO206-Levittown,Levittown,PA
+HOME DEPOT PRO- LEVITTOWN RRC,PRO206-Levittown,Levittown,PA
+HOME DEPOT PRO LEVITTOWN RRC,PRO206-Levittown,Levittown,PA
+HOME DEPOT PRO- LEVITTOWN,PRO206-Levittown,Levittown,PA
+Home Depot Pro Levittown,PRO206-Levittown,Levittown,PA
+HDP #3216-1 LEVITTOWN,PRO206-Levittown,Levittown,PA
+FM-LEXINGTON-LINEHAUL,SC059-Columbia,Columbia,SC
+HOME DEPOT PRO-WEST COLUMBIA,PRO292-Columbia,Columbia,SC
+HOME DEPOT PRO- WEST COLUMBIA,PRO292-Columbia,Columbia,SC
+HOME DEPOT PRO- WEST COLUMBIA,PRO292-Columbia,Columbia,SC
+HOME DEPOT PRO- WEST COLUMBIA,PRO292-Columbia,Columbia,SC
+FM-WEST COLUMBIA LINEHAUL,SC062-Columbia,Columbia,SC
+FM-LADSON-ANYWHERE EXP for PILOT,SC057-Charleston,Charleston,SC
+FM-LADSON,SC057-Charleston,Charleston,SC
+HOME DEPOT PRO- SUMMERVILLE,PRO291-Summerville,Summerville,SC
+HOME DEPOT PRO- SUMMERVILLE,SC061-Summerville,Summerville,SC
+HD PRO SUMMERVILLE,PRO291-Summerville,Summerville,SC
+HOME DEPOT PRO- PIEDMONT,PRO293-Greenville,Greenville,SC
+HOME DEPOT PRO- PIEDMONT,PRO293-Greenville,Greenville,SC
+HOME DEPOT PRO- GREENVILLE,PRO293-Greenville,Greenville,SC
+FM-HDS-GREENVILLE,SC060-Greenville,Greenville,SC
+INTERLINE BRANDS-225,PRO225-La Vergne,La Vergne,TN
+HOME DEPOT PRO- LA VERGNE RRC,PRO225-La Vergne,La Vergne,TN
+HOME DEPOT PRO- LA VERGNE RRC,PRO225-La Vergne,La Vergne,TN
+HOME DEPOT PRO- LA VERGNE OFFSITE,PRO225-La Vergne,La Vergne,TN
+HOME DEPOT PRO- LA VERGNE,PRO225-La Vergne,La Vergne,TN
+HDP #3290-2 LA VERGNE,PRO225-La Vergne,La Vergne,TN
+HDP #3290-1 LA VERGNE,PRO225-La Vergne,La Vergne,TN
+HD PRO NASHVILLE,PRO225-La Vergne,La Vergne,TN
+Renovations Plus,NAN-Vendor,Vendor,TN
+THD PRO- LAVERGNE RRC,PRO225-La Vergne,La Vergne,TN
+THD PRO- LAVERGNE OFFSITE,PRO225-La Vergne,La Vergne,TN
+THD PRO- LAVERGNE,PRO225-La Vergne,La Vergne,TN
+LaVergne PRO,PRO225-La Vergne,La Vergne,TN
+LaVergne,PRO225-La Vergne,La Vergne,TN
+Nashville Fulfillment DC,TN44-Nashville,Nashville,TN
+HD Supply-42-HDS#2646,TN44-Nashville,Nashville,TN
+FM-NASHVILLE-Li-Way,TN44-Nashville,Nashville,TN
+FM-HDS DC-NASHVILLE-TN44,TN44-Nashville,Nashville,TN
+FM-HD Supply DC-NASHVILLE,TN44-Nashville,Nashville,TN
+HOME DEPOT PRO- BRISTOL,TN057-Bristol,Bristol,TN
+FM-KNOXVILLE-Longbow Transportation,TN049-Knoxville,Knoxville,TN
+FM-HDS XD-KNOXVILLE,TN049-Knoxville,Knoxville,TN
+FM-HD Supply XD-KNOXVILLE,TN049-Knoxville,Knoxville,TN
+HD SUPPLY CROSSDOCK - MEMPHIS,TN50-Memphis,Memphis,TN
+FM-HD Supply-XD-MEMPHIS,TN50-Memphis,Memphis,TN
+FM-HD Supply XD-MEMPHIS,TN50-Memphis,Memphis,TN
+FM-MEMPHIS-JIT-EX,TN050-Memphis,Memphis,TN
+FM-HDS XD-MEMPHIS,TN50-Memphis,Memphis,TN
+FM-HD Supply XD-MEMPHIS,TN50-Memphis,Memphis,TN
+FM-HD Supply-DALLAS Overflow Facility,TX03-Dallas,Dallas,TX
+HDS FM DALLAS Distribution Center,TX03-Dallas,Dallas,TX
+HD Supply-03-HDS#2602,TX03-Dallas,Dallas,TX
+FM-HDS DC-DALLAS-TX03,TX03-Dallas,Dallas,TX
+FM-HD Supply LH DC-DALLAS,TX03-Dallas,Dallas,TX
+FM-HD Supply DC-DALLAS,TX03-Dallas,Dallas,TX
+FM-DC-DALLAS,TX03-Dallas,Dallas,TX
+Niagara Conservation Corp,NAN-Vendor,Vendor,TX
+THD PRO- GRAND PRAIRIE,PRO013-Grand Prairie,Grand Prairie,TX
+THD PRO Grand Prairie,PRO013-Grand Prairie,Grand Prairie,TX
+HOME DEPOT PRO- GRAND PRAIRIE,PRO013-Grand Prairie,Grand Prairie,TX
+HOME DEPOT PRO- GRAND PRAIRIE,PRO013-Grand Prairie,Grand Prairie,TX
+HOME DEPOT PRO Grand Prairie,PRO013-Grand Prairie,Grand Prairie,TX
+HDP #3229 GRAND PRAIRIE,PRO013-Grand Prairie,Grand Prairie,TX
+FM-HD Supply OF-DALLAS,TX03-Dallas,Dallas,TX
+FM-DALLAS-OFFSITE,TX03-Dallas,Dallas,TX
+FM-DALLAS-OFFSITE,TX03-Dallas,Dallas,TX
+VENDOR,NAN-Vendor,Vendor,MI
+HOME DEPOT PRO- PARIS,TX213-Paris,Paris,TX
+TYLER,TX188-Tyler,Tyler,TX
+FM-TYLER-AAFG,TX188-Tyler,Tyler,TX
+FM-HDS XD-TYLER,TX188-Tyler,Tyler,TX
+FM-HD Supply XD-TYLER,TX188-Tyler,Tyler,TX
+ALL ABOUT FREIGHT DOCK,TX188-Tyler,Tyler,TX
+THDP PRO- FORT WORTH,PRO301-Fort Worth,Fort Worth,TX
+THD PRO- FORT WORTH,PRO301-Fort Worth,Fort Worth,TX
+PRO- FORT WORTH,PRO301-Fort Worth,Fort Worth,TX
+homedepotpro facility,PRO301-Fort Worth,Fort Worth,TX
+HOME DEPOT PRO- FT WORTH 341,PRO301-Fort Worth,Fort Worth,TX
+HOME DEPOT PRO- FT WORTH 301,PRO301-Fort Worth,Fort Worth,TX
+HOME DEPOT PRO- FT WORTH,PRO301-Fort Worth,Fort Worth,TX
+HOME DEPOT PRO- FORT WORTH,PRO301-Fort Worth,Fort Worth,TX
+Home Depot Pro Fort Worth,PRO301-Fort Worth,Fort Worth,TX
+HDP #3497 FORT WORTH,PRO301-Fort Worth,Fort Worth,TX
+3101 HIGH RIVER RD.,PRO301-Fort Worth,Fort Worth,TX
+THD PRO Houston,PRO003-Houston,Houston,TX
+HOME DEPOT PRO- HOUSTON 3,PRO003-Houston,Houston,TX
+HOME DEPOT PRO- HOUSTON 3,PRO003-Houston,Houston,TX
+HOME DEPOT PRO- HOUSTON,PRO003-Houston,Houston,TX
+Home Depot Pro,Fix TMS,Fix TMS,AZ
+HD Supply-18-HDS#2611,TX18-Houston,Houston,TX
+FM-HOUSTON-TQL Logistics,TX18-Houston,Houston,TX
+FM-HDS DC-HOUSTON-TX18,TX18-Houston,Houston,TX
+FM-HD Supply DC-HOUSTON,TX18-Houston,Houston,TX
+HOME DEPOT PRO- HOUSTON 299,PRO299-Houston,Houston,TX
+HOME DEPOT PRO- HOUSTON 299,PRO299-Houston,Houston,TX
+HOME DEPOT PRO- HOUSTON 299,PRO299-Houston,Houston,TX
+Home Depot Pro Houston,PRO003-Houston,Houston,TX
+Vendor,NAN-Vendor,Vendor,MI
+FM-SCHERTZ-AAFG,TX27-San Antonio,San Antonio,TX
+FM-SCHERTZ,TX27-San Antonio,San Antonio,TX
+FM-HDS DC-SAN ANTONIO-TX27,TX27-San Antonio,San Antonio,TX
+FM-HD Supply DC-SCHERTZ,TX27-San Antonio,San Antonio,TX
+HOME DEPOT PRO- SAN ANTONIO,PRO017-San Antonio,San Antonio,TX
+HOME DEPOT PRO- SAN ANTONIO,PRO017-San Antonio,San Antonio,TX
+Vendor,NAN-Vendor,Vendor,MI
+Refugio,TX189-Corpus Christi,Corpus Christi,TX
+HDPROTX4-D,TX189-Corpus Christi,Corpus Christi,TX
+HDPROTX4,TX189-Corpus Christi,Corpus Christi,TX
+FM-HDS XD-CORPUS CHRISTI,TX189-Corpus Christi,Corpus Christi,TX
+FM-HD Supply XD-CORPUS CHRISTI,TX189-Corpus Christi,Corpus Christi,TX
+FM-CORPUS CHRISTI-TQL Logistics,TX189-Corpus Christi,Corpus Christi,TX
+HD Supply-36-HDS#2637,TX35-Austin,Austin,TX
+FM-HDS DC-AUSTIN-TX35,TX35-Austin,Austin,TX
+FM-HD Supply DC-AUSTIN,TX35-Austin,Austin,TX
+FM-AUSTIN-CH Robinson,TX35-Austin,Austin,TX
+FM-AUSTIN,TX35-Austin,Austin,TX
+HOME DEPOT PRO- LUBBOCK,PRO804-Lubbock,Lubbock,TX
+HOME DEPOT PRO- ODESSA,PRO802-Odessa,Odessa,TX
+HDP-ODESSA,PRO802-Odessa,Odessa,TX
+HDP ODESSA,PRO802-Odessa,Odessa,TX
+HOME DEPOT PRO- EL PASO,TX208-El Paso,El Paso,TX
+FM-EL PASO-Linehaul,TX208-El Paso,El Paso,TX
+FM-EL PASO-Linehaul,TX190-El Paso,El Paso,TX
+FM-HDS DC-DALLAS-TX03,TX03-Dallas,Dallas,TX
+FM-HDS DC-DALLAS-TX03,TX03-Dallas,Dallas,TX
+Dallas Fulfillment Center DC,TX03-Dallas,Dallas,TX
+Houston Fulfillment Center DC,TX18-Houston,Houston,TX
+HD Supply-27-HDS#2617,TX27-San Antonio,San Antonio,TX
+San Antonio Fulfillment Center DC,TX27-San Antonio,San Antonio,TX
+FM-HD Supply DC-SAN ANTONIO,TX27-San Antonio,San Antonio,TX
+HDS Austin Branch Fulfillment DC,TX35-Austin,Austin,TX
+HOME DEPOT PRO- DRAPER PRO CENTER,PRO306-Draper,Draper,UT
+HDP - DRAPER LDC,PRO306-Draper,Draper,UT
+Salt Lake City Fulfillment DC,UT48-Salt Lake City,Salt Lake City,UT
+FM-SALT LAKE CITY-TQL,UT48-Salt Lake City,Salt Lake City,UT
+FM-HD Supply DC-SALT LAKE CITY,UT48-Salt Lake City,Salt Lake City,UT
+UT48 - S 5500 W - SLC DC,UT48-Salt Lake City,Salt Lake City,UT
+Salt Lake City Fulfillment DC New,UT48-Salt Lake City,Salt Lake City,UT
+FM-HDS DC-SALT LAKE CITY-UT48,UT48-Salt Lake City,Salt Lake City,UT
+HD Supply-10-HDS#2605,VA10-Richmond,Richmond,VA
+FM-HDS DC-RICHMOND-VA10,VA10-Richmond,Richmond,VA
+FM-HD Supply DC-RICHMOND,VA10-Richmond,Richmond,VA
+FM-GLEN ALLEN-Iceland,VA10-Richmond,Richmond,VA
+ICC - EASTPORT 7,PRO180-Richmond,Richmond,VA
+HOME DEPOT PRO- RICHMOND,PRO180-Richmond,Richmond,VA
+HOME DEPOT PRO- RICHMOND,PRO180-Richmond,Richmond,VA
+HDP #3267 RICHMOND,PRO180-Richmond,Richmond,VA
+Home Depot Pro - Richmond,PRO180-Richmond,Richmond,VA
+HD Supply-41-HDS#2639,VA37-Newport News,Newport News,VA
+Hampton Fulfillment Center DC,VA37-Newport News,Newport News,VA
+FM-HDS DC-HAMPTON-VA37,VA37-Newport News,Newport News,VA
+FM-HD Supply DC-HAMPTON,VA37-Newport News,Newport News,VA
+FM-HAMPTON-Iceland,VA37-Newport News,Newport News,VA
+Richmond Fulfillment Center DC,VA10-Richmond,Richmond,VA
+FM-HDS DC-RICHMOND-VA10,VA10-Richmond,Richmond,VA
+FM-SEATTLE-TQL Logistics,WA09-Seattle,Seattle,WA
+FM-HDS DC-SEATTLE-WA09,WA09-Seattle,Seattle,WA
+FM-HD Supply-DC-SEATTLE,WA09-Seattle,Seattle,WA
+FM-HD Supply DC-SEATTLE,WA09-Seattle,Seattle,WA
+HOME DEPOT PRO- KENT,PRO009-Kent,Kent,WA
+HOME DEPOT PRO- KENT,PRO009-Kent,Kent,WA
+HOME DEPOT PRO- KENT,PRO009-Kent,Kent,WA
+HOME DEPOT PRO- PORT ANGELES,WA038-Port Angeles,Port Angeles,WA
+HOME DEPOT PRO- YAKIMA,WA040-Yakima,Yakima,WA
+LH-Spokane,WA039-Spokane,Spokane,WA
+Home Depot Pro Spokane,WA039-Spokane,Spokane,WA
+FM-SPOKANE-Peninsula,WA039-Spokane,Spokane,WA
+FM-SPOKANE-Cross Dock,WA039-Spokane,Spokane,WA
+FM-SPOKANE-Cross Do,WA039-Spokane,Spokane,WA
+HOME DEPOT PRO- SPOKANE,WA039-Spokane,Spokane,WA
+HOME DEPOT PRO SPOKANE,WA039-Spokane,Spokane,WA
+Seattle Fulfillment Center DC,WA09-Seattle,Seattle,WA
+HD Supply-09-HDS#2604,WA09-Seattle,Seattle,WA
+FM-MILWAUKEE-Action Express,WI008-Milwaukee,Milwaukee,WI
+FM-HDS XD-MILWAUKEE,WI008-Milwaukee,Milwaukee,WI
+FM-HD Supply-XD-MILWAUKEE,WI008-Milwaukee,Milwaukee,WI
+FM-HD Supply XD-MILWAUKEE,WI008-Milwaukee,Milwaukee,WI
+HOME DEPOT PRO- BLUEFIELD,WV007-Bluefield,Bluefield,WV
+HDP #3547 BLUEFIELD,WV007-Bluefield,Bluefield,WV
+HD Supply Canada - WHSE 0200 474916-00,HDS Canada,Plymouth,MI
+HD Supply Canada - WHSE 0200 475216-00,HDS Canada,Plymouth,MI
+HD Supply Canada - WHSE 0220,HDS Canada,Blaine,WA
+HD Supply Canada 472686-00,HDS Canada,Blaine,WA
+HD Supply Canada 472836-00,HDS Canada,Blaine,WA
+HD SUPPLY INDIANAPOLIS DC,IN41-Indianapolis,Indianapolis,IN
+HD Supply-49-HDS#2642,MI40-Detroit,Detroit,MI
+HDP #3263 FARMINGTON HILLS,PRO019-Farmington Hills,Farmington Hills,MI
+HDP #3458 GRESHAM,PRO165-Portland,Portland,OR
+HDS LAKELAND FULFILLMENT,FL14-Lakeland,Lakeland,FL
+HDS LAKELAND FULL,FL14-Lakeland,Lakeland,FL
+HDS ORLANDO BRANCH DC,FL14-Lakeland,Lakeland,FL
+H D SUPPLY - DALLAS,TX03-Dallas,Dallas,TX
+HDSUPPLY.COM - STERLING HEIGHTS,MI40-Detroit,Detroit,MI
+HDSUPPLY.COM - CINCINNATI,OH67-Cincinnati,Cincinnati,OH
+HD SUPPLY - BAYONNE,NJ056-Bayonne,Bayonne,NJ
+HD SUPPLY - HIGH POINT,NC085-Greensboro,Greensboro,NC
+FM-HDS XD-MANTECA,CA342-Modesto,Modesto,CA
+HOME DEPOT PRO- LOS ANGELES,PRO238-Commerce,Commerce,CA
+FM-HDS DC-SALT LAKE CITY-UT48,UT48-Salt Lake City,Salt Lake City,UT
+HD SUPPLY ATLANTA DC,GA02-Atlanta,Atlanta,GA
+HDS Austin Branch DC,TX35-Austin,Austin,TX
+HD Supply - Baltimore DC #MD23,MD23-Baltimore,Baltimore,MD
+HDS FM - FOREST PARK,GA02-Atlanta,Atlanta,GA
+HDP #3536 HUNTSVILLE,AL036-Huntsville,Huntsville,AL
+HDS SACRAMENTO FULFILLMENT DC,PRO041-Sacramento,Sacramento,CA
+HD SUPPLY INDIANAPOLIS DC - INDIANAPOLIS,IN41-Indianapolis,Indianapolis,IN
+HD Supply Canada - WHSE 0200 476146-00,HDS Canada,Plymouth,MI
+HD SUPPLY ATLANTA DC - Forest Park,GA02-Atlanta,Atlanta,GA
+HD SUPPLY IN - INDIANAPOLIS,IN41-Indianapolis,Indianapolis,IN
+HD SUPPLY AT - Forest Park,GA02-Atlanta,Atlanta,GA
+HD Supply - Lakeland DC #FL14,FL14-Lakeland,Lakeland,FL
+HD Supply Columbus DC,OH36-Columbus,Columbus,OH
+HDP #3440 SPOKANE,WA039-Spokane,Spokane,WA
+HDP #3495-1 SAN JOSE,PRO236-San Jose,San Jose,CA
+HDP #3530 SUMMERVILLE,PRO291-Summerville,Summerville,SC
+HOME DEPOT #1236,NY033-Syracuse,Syracuse,NY
+FM-HDS DC-DETROIT-MI40,MI40-Detroit,Detroit,MI
+FM-HDS DC-MIAMI-FL19,FL19-Miami,Miami,FL
+FM-HDS DC-CHICAGO-IL30,IL30-Chicago,Chicago,IL
+HD Supply-45-HDS#2649,OR47-Portland,Portland,OR
+HOME DEPOT PRO- LEVITTOWN,PRO206-Levittown,Levittown,PA
+HOME DEPOT PRO- HUNTINGTON,WV008-Huntington,Huntington,WV
+HDP #3553 PIEDMONT,PRO293-Greenville,Greenville,SC
+HDP #3495-1 SAN JOSE,PRO236-San Jose,San Jose,CA
+HDP #3454-1 POMPANO BEACH,PRO154-Pompano Beach,Pompano Beach,FL
+Home Depot Pro Shawnee,PRO233-Shawnee,Shawnee,KS
+Home Depot Pro Commerce,PRO238-Commerce,Commerce,CA
+Home Depot SDC 5645,PRO199-Jurupa Valley,Jurupa Valley,CA
+HD Supply Canada,HDS Canada,Plymouth,MI
+Grand Prairie Offsite,PRO301-Fort Worth,Fort Worth,TX
+HD SUPPLY- DALLAS,TX03-Dallas,Dallas,TX
+HOME DEPOT PRO- HAZELWOOD,PRO245-Hazelwood,Hazelwood,MO
+FM-HDS XD-SPARKS,NV301-Reno,Reno,NV
+HOME DEPOT PRO- LEVITTOWN,PRO206-Levittown,Levittown,PA
+HDP #3290-1 LA VERGNE,PRO225-La Vergne,La Vergne,TN
+HDP #3229 GRAND PRAIRIE,PRO013-Grand Prairie,Grand Prairie,TX
+HDP #3495-1 SAN JOSE,PRO236-San Jose,San Jose,CA
+HOME DEPOT PRO- SHAWNEE,PRO233-Shawnee,Shawnee,KS
+Home Depot Pro - Langhorne,PRO206-Levittown,Levittown,PA
+HD Supply - Fishers,IN41-Indianapolis,Indianapolis,IN
+Home Depot Pro Langhorne,PRO206-Levittown,Levittown,PA
+THD Pro - Columbus,OH069-Columbus,Columbus,OH
+HDP #3296-1 FISHERS,PRO004-Indianapolis,Indianapolis,IN
+HD SUPPLY KENT,WA09-Seattle,Seattle,WA
+HOME DEPOT PRO- LA VERGNE 80,PRO225-La Vergne,La Vergne,TN
+ABM/GCA SERVICES,NAN-Vendor,Vendor,FL
+Williams Scotsman,NAN-Vendor,Vendor,MI
+RXO Terminal for MI40,NAN-Vendor,Vendor,MI
+"WILMAR INDUSTRIES, INC - DAL",NAN-Vendor,Vendor,TX
+HOME DEPOT PRO - JACKSONVILLE RRC,PRO208-Jacksonville,Jacksonville,FL
+HOME DEPOT PRO- LA VERGNE RRC,PRO225-La Vergne,La Vergne,TN
+HOME DEPOT PRO- DORAVILLE,PRO006-Doraville,Doraville,GA
+FM-HD SUPPLY DC-ATLANTA,GA02-Atlanta,Atlanta,GA
+FM-HDS DC-COLUMBUS-OH36,OH36-Columbus,Columbus,OH
+TOM DREXLER PLBG AIR EL-FEEDER,NAN-Vendor,Vendor,OH
+HOME DEPOT PRO - JACKSONVILLE 4910,PRO208-Jacksonville,Jacksonville,FL
+Sumner,NAN-Vendor,Vendor,WA
+HOME DEPOT PRO - JACKSONVILLE,PRO208-Jacksonville,Jacksonville,FL
+Home Depot Pro - Commerce,PRO238-Commerce,Commerce,CA
+Home Depot Pro - Houston,PRO003-Houston,Houston,TX
+Home Depot Pro -  Shawnee,PRO233-Shawnee,Shawnee,KS
+PHOENIX OFFSITE,AZ17-Phoenix,Phoenix,AZ
+HOME DEPOT PRO- SHAWNEE,PRO233-Shawnee,Shawnee,KS
+HD SUPPLY ATLANTA,GA02-Atlanta,Atlanta,GA
+HD SUPPLY LOUISVILLE CROSSDOCK,KY018-Louisville,Louisville,KY
+VMI Warehouse,NAN-Vendor,Vendor,CA
+HDP #3438 YAKIMA,WA040-Yakima,Yakima,WA
+FM-HDS DC-LOS ANGELES-CA20,CA20-LA Metro,LA Metro,CA
+THE HOME DEPOT PRO FOREST PARK,GA02-Atlanta,Atlanta,GA
+THE HOME DEPOT PRO - FOREST PARK,GA02-Atlanta,Atlanta,GA
+HDP #3460 HERRIN,IL039-Herrin,Herrin,IL
+FM-HDS DC SEATTLE-WA09,WA09-Seattle,Seattle,WA
+Cerritos,NAN-Vendor,Vendor,CA
+Concord,NAN-Vendor,Vendor,CA
+Wilsonville,NAN-Vendor,Vendor,OR
+HDP #3452 PORT ANGELES,WA038-Port Angeles,Port Angeles,WA
+HOME DEPOT PRO-JACKSONVILLE 289,PRO208-Jacksonville,Jacksonville,FL
+HDP #3460 HERRIN,IL039-Herrin,Herrin,IL
+HDP #3218-1 SAN ANTONIO,PRO017-San Antonio,San Antonio,TX
+HDP #3526-1 HOUSTON,PRO003-Houston,Houston,TX
+HDP #3265-1 HOUSTON,PRO299-Houston,Houston,TX
+HDP #3218-1 SAN ANTONIO,PRO017-San Antonio,San Antonio,TX
+Wood Dale,IL032-WoodDale,WoodDale,IL
+CLARENCE DAVIS,NAN-Cusomer,Cusomer,FL
+23333 Commerce Dr.,PRO019-Farmington Hills,Farmington Hills,MI
+HDS FM Rcving OH36,OH36-Columbus,Columbus,OH
+Plymouth,HDS Canada,Plymouth,MI
